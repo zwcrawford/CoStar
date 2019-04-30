@@ -8,6 +8,9 @@ namespace CoStar.Models
 {
 	public class Principle
 	{
+		[Key]
+		public int PrincipleId { get; set; }
+
 		public string PrincipleImage { get; set; }
 
 		[Required]

@@ -8,6 +8,9 @@ namespace CoStar.Models
 {
 	public class IntQuestion
 	{
+		[Key]
+		public int IntQuestionId { get; set; }
+
 		public string IntQuestionImage { get; set; }
 
 		[Required]
