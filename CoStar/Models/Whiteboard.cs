@@ -8,6 +8,9 @@ namespace CoStar.Models
 {
 	public class Whiteboard
 	{
+		[Key]
+		public int WhiteboardId { get; set; }
+
 		public string WhiteboardImage { get; set; }
 
 		[Required]
