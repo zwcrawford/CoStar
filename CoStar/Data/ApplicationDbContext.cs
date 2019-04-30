@@ -20,5 +20,19 @@ namespace CoStar.Data
 		public DbSet<IntQuestion> Questions { get; set; }
 		public DbSet<Whiteboard> Whiteboards { get; set; }
 		public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+		/*
+		Property names for collections are typically plural (Principles rather than Principle), but developers disagree about
+		whether table names should be pluralized or not. For this project, I have overridden the default behavior by
+		specifying singular table names in the DbContext.
+		*/
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<Principle>().ToTable("Principle");
+			modelBuilder.Entity<HelpfulLink>().ToTable("Link");
+			modelBuilder.Entity<IntQuestion>().ToTable("IntQuestion");
+			modelBuilder.Entity<Whiteboard>().ToTable("Whiteboard");
+			modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
+		}
 	}
 }
