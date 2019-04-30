@@ -11,6 +11,9 @@ namespace CoStar.Data
 	{
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 		public DbSet<Principle> Principles { get; set; }
+		public DbSet<HelpfulLink> Links { get; set; }
+		public DbSet<IntQuestion> Questions { get; set; }
+		public DbSet<Whiteboard> Whiteboards { get; set; }
 		public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 	}
 }
