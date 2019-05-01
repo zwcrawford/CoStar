@@ -11,8 +11,6 @@ namespace CoStar.Models
 		[Key]
 		public int IntQuestionId { get; set; }
 
-		//public string IntQuestionImage { get; set; }
-
 		[Required]
 		[Display(Name = "Interview Question Name")]
 		public string IntQuestionName { get; set; }

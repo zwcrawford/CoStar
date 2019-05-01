@@ -12,9 +12,9 @@ namespace CoStar.Models
 		[Key]
 		public int PrincipleId { get; set; }
 
-		//public byte[] PrincipleImage { get; set; }
+		public string PrincipleImage { get; set; }
 
-		[Required]
+	[Required]
 		[Display(Name = "Principle Name")]
 		public string PrincipleName { get; set; }
 

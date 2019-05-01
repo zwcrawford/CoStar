@@ -11,7 +11,7 @@ namespace CoStar.Models
 		[Key]
 		public int LinkId { get; set; }
 
-		//public string LinkImage { get; set; }
+		public string LinkImage { get; set; }
 
 		[Required]
 		[Display(Name = "Link Name")]

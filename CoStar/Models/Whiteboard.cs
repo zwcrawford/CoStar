@@ -11,7 +11,7 @@ namespace CoStar.Models
 		[Key]
 		public int WhiteboardId { get; set; }
 
-		//public string WhiteboardImage { get; set; }
+		public string WhiteboardImage { get; set; }
 
 		[Required]
 		[Display(Name = "Whiteboard Name")]
