@@ -101,11 +101,35 @@ namespace CoStar.Data
 				IntQuestionDescription="var is function-scoped and let is block-scoped.",
 				UserId = null
 				},
-				// Question 3
+				// Question 4
 				new IntQuestion{
 				IntQuestionId = 4,
 				IntQuestionName="What is the difference between '==' and '==='?",
 				IntQuestionDescription="The first option == checks value equality, whereas === returns false, and checks both type and value equality.",
+				UserId = null
+				},
+			};
+			foreach (IntQuestion i in intQuestions)
+			{
+				context.Questions.Add(i);
+			}
+			context.SaveChanges();
+
+			/******************** HELPFUL LINKS ********************/
+			var helpfulLinks = new HelpfulLink[]
+			{
+				// Link 1
+				new HelpfulLink{
+				LinkId = 1,
+				LinkUrl="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
+				LinkDescription="JavaScript language Documentation",
+				UserId = null
+				},
+				// Link 2
+				new HelpfulLink{
+				LinkId = 2,
+				LinkUrl="https://docs.microsoft.com/en-us/dotnet/csharp/",
+				LinkDescription="C# language Documentation",
 				UserId = null
 				},
 			};
