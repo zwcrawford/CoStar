@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CoStar.Models
 {
@@ -11,7 +12,7 @@ namespace CoStar.Models
 		[Key]
 		public int PrincipleId { get; set; }
 
-		public string PrincipleImage { get; set; }
+		//public byte[] PrincipleImage { get; set; }
 
 		[Required]
 		[Display(Name = "Principle Name")]
@@ -21,6 +22,6 @@ namespace CoStar.Models
 		[Display(Name = "Principle Description")]
 		public string PrincipleDescription { get; set; }
 
-		public ApplicationUser User { get; set; }
+		public ApplicationUser UserId { get; set; }
 	}
 }

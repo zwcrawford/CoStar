@@ -20,34 +20,44 @@ namespace CoStar.Data
 
 			var principles = new Principle[]
 			{
-			new Principle{PrincipleName="S.O.L.I.D.",PrincipleDescription="Alexander",User=DateTime.Parse("2005-09-01")},
-			new Student{FirstMidName="Meredith",LastName="Alonso",EnrollmentDate=DateTime.Parse("2002-09-01")},
-			new Student{FirstMidName="Arturo",LastName="Anand",EnrollmentDate=DateTime.Parse("2003-09-01")},
-			new Student{FirstMidName="Gytis",LastName="Barzdukas",EnrollmentDate=DateTime.Parse("2002-09-01")},
-			new Student{FirstMidName="Yan",LastName="Li",EnrollmentDate=DateTime.Parse("2002-09-01")},
-			new Student{FirstMidName="Peggy",LastName="Justice",EnrollmentDate=DateTime.Parse("2001-09-01")},
-			new Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2003-09-01")},
-			new Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2005-09-01")}
+
+			// SOLID
+			new Principle{
+			PrincipleName= "S.O.L.I.D.",
+			PrincipleDescription="SOLID is an acronym for the first five object-oriented design(OOD) principles by Robert C. Martin. These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend, and are also a part of agile, an adaptive software development principle. [S]ingle Responsibility Principle, [O]pen/ Closed Principle, [L]iskov Substitution Principle, [I]ntegration Segregation Principle, [D]ependency Inversion Principle",
+			UserId= null
+			},
+
+			// OPP
+			new Principle{
+			PrincipleName="O.O.P.",
+			PrincipleDescription="Object Oriented Programming(OOP) is a language model that is organized around objects rather than actions and data rather than logic. There are four pillars of OOP: Abstraction, Polymorphism, Inheritance, and Encapsulation. You can remember this mnemonic device - A.P.I.E., because pie is awesome!",
+			UserId= null},
+
+			// SRP
+			new Principle{
+			PrincipleName="Agile",
+			PrincipleDescription="There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan. There are also twelve basic principles that one should adhere to if using the Agile methodology: [1] Customer satisfaction through early and continuous software delivery. [2] Accommodate changing requirements throughout the development process, [3] Frequent delivery of working software, [4] Collaboration between the business stakeholders and developers throughout the project, [5] Support, trust, and motivate the people involved, [6] Enable face-to-face interactions, [7] Working software is the primary measure of progress, [8] Agile processes to support a consistent development pace, [9] Attention to technical detail and design enhances agility, [10] Simplicity, [11] Self-organizing teams encourage great architectures, requirements, and designs, and [12] Regular reflections on how to become more effective.",
+			UserId = null},
 			};
-			foreach (Student s in students)
+			foreach (Principle p in principles)
 			{
-				context.Students.Add(s);
+				context.Principles.Add(p);
 			}
 			context.SaveChanges();
 
-			var courses = new Course[]
+			var whiteboards = new Whiteboard[]
 			{
-			new Course{CourseID=1050,Title="Chemistry",Credits=3},
-			new Course{CourseID=4022,Title="Microeconomics",Credits=3},
-			new Course{CourseID=4041,Title="Macroeconomics",Credits=3},
-			new Course{CourseID=1045,Title="Calculus",Credits=4},
-			new Course{CourseID=3141,Title="Trigonometry",Credits=4},
-			new Course{CourseID=2021,Title="Composition",Credits=3},
-			new Course{CourseID=2042,Title="Literature",Credits=4}
+			// SRP
+			new Whiteboard{
+
+			WhiteboardName="Median of Arrays",
+			WhiteboardDescription="Find the median of two sorted arrays.",
+			UserId= null},
 			};
-			foreach (Course c in courses)
+			foreach (Whiteboard c in whiteboards)
 			{
-				context.Courses.Add(c);
+				context.Whiteboards.Add(c);
 			}
 			context.SaveChanges();
 
