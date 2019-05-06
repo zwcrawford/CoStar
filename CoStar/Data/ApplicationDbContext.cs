@@ -27,6 +27,9 @@ namespace CoStar.Data
 		{
 			base.OnModelCreating(modelBuilder);
 			// Create the applcation users (2).
+			modelBuilder.Entity<ApplicationUser>()
+				.Property(u => u.EnrollDate)
+				.HasDefaultValueSql("GETDATE()");
 
 			ApplicationUser user = new ApplicationUser
 			{
@@ -38,7 +41,8 @@ namespace CoStar.Data
 				NormalizedEmail = "admin@ADMIN.COM",
 				EmailConfirmed = true,
 				LockoutEnabled = false,
-				SecurityStamp = Guid.NewGuid().ToString("D")
+				SecurityStamp = Guid.NewGuid().ToString("D"),
+				EnrollDate = new DateTime(2008, 10, 15)
 			};
 			var passwordHash = new PasswordHasher<ApplicationUser>();
 			user.PasswordHash = passwordHash.HashPassword(user, "Admin8*");
@@ -54,16 +58,16 @@ namespace CoStar.Data
 				NormalizedEmail = "guest@ADMIN.COM",
 				EmailConfirmed = true,
 				LockoutEnabled = false,
-				SecurityStamp = Guid.NewGuid().ToString("D")
+				SecurityStamp = Guid.NewGuid().ToString("D"),
+				EnrollDate = new DateTime(2010, 11, 10)
 			};
 			var passwordHash2 = new PasswordHasher<ApplicationUser>();
             user2.PasswordHash = passwordHash2.HashPassword(user2, "Admin10*");
             modelBuilder.Entity<ApplicationUser>().HasData(user2);
-
+			
 			/******************** PRINCIPLES ********************/
 			var principles = new Principle[]
 			{
-
 				// SOLID
 				new Principle
 				{
@@ -94,9 +98,11 @@ namespace CoStar.Data
 					UserId = null
 				}
 			};
+			modelBuilder.Entity<Principle>().HasData(principles);
+
 
 			/******************** WHITEBOARD ********************/
-			
+
 			var whiteboards = new Whiteboard[]
 			{
 				// Median of Arrays
@@ -118,6 +124,7 @@ namespace CoStar.Data
 					UserId= null
 				}
 			};
+			modelBuilder.Entity<Whiteboard>().HasData(whiteboards);
 			/******************** INTERVIEW QUESTIONS ********************/
 			var intQuestions = new IntQuestion[]
 			{
@@ -150,6 +157,7 @@ namespace CoStar.Data
 					UserId = null
 				}
 			};
+			modelBuilder.Entity<IntQuestion>().HasData(intQuestions);
 			/******************** HELPFUL LINKS ********************/
 			var helpfulLinks = new HelpfulLink[]
 			{
@@ -175,6 +183,7 @@ namespace CoStar.Data
 					UserId = null
 				}
 			};
+			modelBuilder.Entity<HelpfulLink>().HasData(helpfulLinks);
 		}
 	}
 }
