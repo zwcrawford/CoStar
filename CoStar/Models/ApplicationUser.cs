@@ -24,9 +24,6 @@ namespace CoStar.Models
 		[Display(Name = "Last Name")]
 		public string LastName { get; set; }
 
-		[Required]
-		override public string Email { get; set; }
-
 		public  DateTime EnrollDate { get; set; }
 	}
 }

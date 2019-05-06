@@ -50,7 +50,7 @@ namespace CoStar.Data
 				PrincipleName="Agile",
 				PrincipleDescription="There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan.",
 				UserId = null
-				},
+				}
 			};
 			foreach (Principle p in principles)
 			{
@@ -59,17 +59,32 @@ namespace CoStar.Data
 			context.SaveChanges();
 
 			/******************** WHITEBOARD ********************/
+			// Look for any whiteboards.
+			if (context.Whiteboards.Any())
+			{
+				return;   // DB has been seeded
+			}
 			var whiteboards = new Whiteboard[]
 			{
-				// SRP
+				// Median of Arrays
 				new Whiteboard
 				{
 				WhiteboardId = 1,
+				WhiteboardImage = "../wwwroot/Images/MedianArrays_Img.png",
 				WhiteboardName="Median of Arrays",
 				WhiteboardDescription="Find the median of two sorted arrays.",
 				UserId= null
-				
+
 				},
+				// Median of Arrays
+				new Whiteboard
+				{
+				WhiteboardId = 2,
+				WhiteboardImage = "../wwwroot/Images/FizzBuzz_Img.png",
+				WhiteboardName="Fizz Buzz",
+				WhiteboardDescription="Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.",
+				UserId= null
+				}
 			};
 			foreach (Whiteboard w in whiteboards)
 			{
@@ -78,6 +93,11 @@ namespace CoStar.Data
 			context.SaveChanges();
 
 			/******************** INTERVIEW QUESTIONS ********************/
+			// Look for any IntQuestions.
+			if (context.Questions.Any())
+			{
+				return;   // DB has been seeded
+			}
 			var intQuestions = new IntQuestion[]
 			{
 				// Question 1
@@ -107,7 +127,7 @@ namespace CoStar.Data
 				IntQuestionName="What is the difference between '==' and '==='?",
 				IntQuestionDescription="The first option == checks value equality, whereas === returns false, and checks both type and value equality.",
 				UserId = null
-				},
+				}
 			};
 			foreach (IntQuestion i in intQuestions)
 			{
@@ -116,6 +136,11 @@ namespace CoStar.Data
 			context.SaveChanges();
 
 			/******************** HELPFUL LINKS ********************/
+			// Look for any HelpfulLinks.
+			if (context.Links.Any())
+			{
+				return;   // DB has been seeded
+			}
 			var helpfulLinks = new HelpfulLink[]
 			{
 				// Link 1
@@ -132,10 +157,17 @@ namespace CoStar.Data
 				LinkDescription="C# language Documentation",
 				UserId = null
 				},
+				// Link 3
+				new HelpfulLink{
+				LinkId = 3,
+				LinkUrl="https://reactjs.org/docs/getting-started.html",
+				LinkDescription="React - Getting Started",
+				UserId = null
+				}
 			};
-			foreach (IntQuestion i in intQuestions)
+			foreach (HelpfulLink l in helpfulLinks)
 			{
-				context.Questions.Add(i);
+				context.Links.Add(l);
 			}
 			context.SaveChanges();
 		}
