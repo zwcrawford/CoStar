@@ -7,6 +7,7 @@ using CoStar.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoStar.Controllers
 {
@@ -25,10 +26,10 @@ namespace CoStar.Controllers
 		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
 		// GET: Principles
-		public ActionResult Index()
+		public async Task<IActionResult> Index()
         {
-            return View();
-        }
+			return View(await _context.Principles.ToListAsync());
+		}
 
         // GET: Principles/Details/5
         public ActionResult Details(int id)
