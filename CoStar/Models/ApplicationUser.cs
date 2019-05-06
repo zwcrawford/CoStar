@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -10,11 +11,12 @@ namespace CoStar.Models
 	// Add profile data for application users by adding properties to the ApplicationUser class
 	public class ApplicationUser : IdentityUser
 	{
+		
 		public ApplicationUser()
 		{
 
 		}
-		public string ApplicationUserImage { get; set; }
+		public byte[] ApplicationUserImage { get; set; }
 
 		[Required]
 		[Display(Name = "First Name")]
@@ -25,9 +27,15 @@ namespace CoStar.Models
 		public string LastName { get; set; }
 
 		[Required]
-		override public string Email { get; set; }
-
+		[DataType(DataType.Date)]
+		[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public  DateTime EnrollDate { get; set; }
+
+		public virtual ICollection<Principle> Principles { get; set; }
+		public virtual ICollection<HelpfulLink> HelpfulLinks { get; set; }
+		public virtual ICollection<IntQuestion> IntQuestions { get; set; }
+		public virtual ICollection<Whiteboard> Whiteboards { get; set; }
 	}
 }
 
