@@ -22,13 +22,48 @@ namespace CoStar.Data
 		public DbSet<IntQuestion> Questions { get; set; }
 		public DbSet<Whiteboard> Whiteboards { get; set; }
 
-		/*
-		Property names for collections are typically plural (Principles rather than Principle), but developers disagree about
-		whether table names should be pluralized or not. For this project, I have overridden the default behavior by
-		specifying singular table names in the DbContext.
-		*/
+		
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			ApplicationUser user = new ApplicationUser
+			{
+				FirstName = "Admin",
+				LastName = "Admin",
+				UserName = "admin@admin.com",
+				NormalizedUserName = "ADMIN@ADMIN.COM",
+				Email = "admin@admin.com",
+				NormalizedEmail = "admin@ADMIN.COM",
+				EmailConfirmed = true,
+				LockoutEnabled = false,
+				SecurityStamp = Guid.NewGuid().ToString("D")
+			};
+			var passwordHash = new PasswordHasher<ApplicationUser>();
+			user.PasswordHash = passwordHash.HashPassword(user, "Admin8*");
+			modelBuilder.Entity<ApplicationUser>().HasData(user);
+
+			ApplicationUser user2 = new ApplicationUser
+			{
+				FirstName = "Guest",
+				LastName = "Guest",
+				UserName = "guest@admin.com",
+				NormalizedUserName = "GUEST@ADMIN.COM",
+				Email = "guest@admin.com",
+				NormalizedEmail = "guest@ADMIN.COM",
+				EmailConfirmed = true,
+				LockoutEnabled = false,
+				SecurityStamp = Guid.NewGuid().ToString("D")
+			};
+			var passwordHash2 = new PasswordHasher<ApplicationUser>();
+            user2.PasswordHash = passwordHash2.HashPassword(user2, "Admin10*");
+            modelBuilder.Entity<ApplicationUser>().HasData(user2);
+
+			/*
+			Property names for collections are typically plural (Principles rather than Principle), but developers
+			disagree about whether table names should be pluralized or not. 
+			
+			For this project, I have overridden the default behavior by specifying singular table names in the
+			DbContext.
+			*/
 			modelBuilder.Entity<Principle>().ToTable("Principle");
 			modelBuilder.Entity<HelpfulLink>().ToTable("Link");
 			modelBuilder.Entity<IntQuestion>().ToTable("IntQuestion");
@@ -64,30 +99,5 @@ namespace CoStar.Data
 				.WithOne(l => l.Product)
 				.OnDelete(DeleteBehavior.Restrict);
 		}
-		ApplicationUser user = new ApplicationUser
-		{
-			FirstName = "Admin",
-			LastName = "Admin",
-			UserName = "admin@admin.com",
-			NormalizedUserName = "ADMIN@ADMIN.COM",
-			Email = "admin@admin.com",
-			NormalizedEmail = "admin@ADMIN.COM",
-			EmailConfirmed = true,
-			LockoutEnabled = false,
-			SecurityStamp = Guid.NewGuid().ToString("D")
-		};
-
-		ApplicationUser user2 = new ApplicationUser
-		{
-			FirstName = "Guest",
-			LastName = "Guest",
-			UserName = "guest@admin.com",
-			NormalizedUserName = "GUEST@ADMIN.COM",
-			Email = "guest@admin.com",
-			NormalizedEmail = "guest@ADMIN.COM",
-			EmailConfirmed = true,
-			LockoutEnabled = false,
-			SecurityStamp = Guid.NewGuid().ToString("D")
-		};
 	}
 }
