@@ -74,31 +74,58 @@ namespace CoStar.Controllers
             }
         }
 
-        // GET: Principles/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+		// GET: Principles/Edit/5
+		public async Task<IActionResult> Edit(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-        // POST: Principles/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+			var principle = await _context.Principles.FindAsync(id);
+			if (principle == null)
+			{
+				return NotFound();
+			}
+			
+			return View(principle);
+		}
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+		// POST: Principles/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost, ActionName("Edit")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> EditPost(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			var principleToUpdate = await _context.Principles.FirstOrDefaultAsync(p => p.PrincipleId == id);
+			if (await TryUpdateModelAsync<Principle>(
+				principleToUpdate,
+				"",
+				p => p.PrincipleImage, p => p.PrincipleName, p => p.PrincipleDescription))
+			{
+				try
+				{
+					await _context.SaveChangesAsync();
+					return RedirectToAction(nameof(Index));
+				}
+				catch (DbUpdateException /* exception */)
+				{
+					//Log the error (uncomment ex variable name and write a log.)
+					ModelState.AddModelError("", "Unable to save changes. " +
+						"Try again, and if the problem persists, " +
+						"see your system administrator.");
+				}
+			}
+			return View(principleToUpdate);
+		}
 
-        // GET: Principles/Delete/5
-        public ActionResult Delete(int id)
+		// GET: Principles/Delete/5
+		public ActionResult Delete(int id)
         {
             return View();
         }
