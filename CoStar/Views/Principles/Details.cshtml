@@ -11,21 +11,21 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            <img src="@Html.DisplayNameFor(model => model.PrincipleImage)" alt="Image" />
+            @Html.DisplayNameFor(model => model.PrincipleImage)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PrincipleImage)
+        <dd class="col-sm-10">
+            <img src="@Html.DisplayFor(model => model.PrincipleImage)" alt="Principle Image" asp-append-version="true" />
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PrincipleName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PrincipleName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PrincipleDescription)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PrincipleDescription)
         </dd>
     </dl>

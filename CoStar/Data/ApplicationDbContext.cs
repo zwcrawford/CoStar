@@ -22,7 +22,7 @@ namespace CoStar.Data
 		public DbSet<IntQuestion> Questions { get; set; }
 		public DbSet<Whiteboard> Whiteboards { get; set; }
 
-		
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
@@ -62,9 +62,9 @@ namespace CoStar.Data
 				EnrollDate = new DateTime(2010, 11, 10)
 			};
 			var passwordHash2 = new PasswordHasher<ApplicationUser>();
-            user2.PasswordHash = passwordHash2.HashPassword(user2, "Admin10*");
-            modelBuilder.Entity<ApplicationUser>().HasData(user2);
-			
+			user2.PasswordHash = passwordHash2.HashPassword(user2, "Admin10*");
+			modelBuilder.Entity<ApplicationUser>().HasData(user2);
+
 			/******************** PRINCIPLES ********************/
 			var principles = new Principle[]
 			{
@@ -184,6 +184,18 @@ namespace CoStar.Data
 				}
 			};
 			modelBuilder.Entity<HelpfulLink>().HasData(helpfulLinks);
+
+			/******************** IMAGES ********************/
+			var images = new Image[]
+			{
+				// SOLID
+				new Image
+				{
+					ImageId = 1,
+					ImageLocation = "../wwwroot/Images/SOLID_Img.png",
+					UserId = null
+				}
+			};
 		}
 	}
 }
