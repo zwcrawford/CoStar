@@ -246,21 +246,21 @@ namespace CoStar.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ApplicationUserImage", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6", 0, null, "d32c4f4b-df85-4c76-8dfd-565d891de1bc", "admin@admin.com", true, "Admin", "Admin", false, null, "admin@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAECqOMmaXXdjcAFeIa1LWKYV0u6CdQjCI9t+d76eZr35PlvEt5++WoO85g8y2Cr+1aQ==", null, false, "62efc551-f5ea-4acc-958d-88e089eaf069", false, "admin@admin.com" });
+                values: new object[] { "d5dced4f-2b99-4012-993d-babd57670625", 0, null, "303917d8-12c7-47f5-93f2-dcbcdea11e32", "admin@admin.com", true, "Admin", "Admin", false, null, "admin@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEKb/YtKzWa9Z2hvpm7j0HfItGXo4deK7HMCzp9QS/+Lk0/b+wHvh2YUy9tC1fKkfVQ==", null, false, "5e1e6bf5-bc33-4cc2-977f-683fafe372c5", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ApplicationUserImage", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "271b6d94-525f-47ae-bb45-2ba1fab701d9", 0, null, "0670a879-17de-4239-abc8-587a4f588142", "guest@admin.com", true, "Guest", "Guest", false, null, "guest@ADMIN.COM", "GUEST@ADMIN.COM", "AQAAAAEAACcQAAAAEFM3E9VDfS3ErSEDUuppVNSWxWBD8iCzPnH58dsH4+b+8yNbKfB7/b1ZhRm7KqH2tw==", null, false, "c4d6cba4-e6e4-43c9-b3f3-1c90470b68ca", false, "guest@admin.com" });
+                values: new object[] { "9ca2a02c-31cb-4240-bcdb-7cfbc90acab3", 0, null, "290f04c6-3a28-4444-9c5a-3177fc755b72", "guest@admin.com", true, "Guest", "Guest", false, null, "guest@ADMIN.COM", "GUEST@ADMIN.COM", "AQAAAAEAACcQAAAAEAwJmbLHH+XXlVs/NJsjSj0crgYOjtOdySmSR9dlb7k5W4YuDorAQsBtBrCT0/eifQ==", null, false, "b2e71416-6e81-48da-9ba8-606dc5b158fc", false, "guest@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Principles",
                 columns: new[] { "PrincipleId", "PrincipleDescription", "PrincipleImage", "PrincipleName", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "SOLID is an acronym for the first five object-oriented design(OOD) principles by Robert C. Martin. These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend, and are also a part of agile, an adaptive software development principle. [S]ingle Responsibility Principle, [O]pen/ Closed Principle, [L]iskov Substitution Principle, [I]ntegration Segregation Principle, [D]ependency Inversion Principle", "~/wwwroot/Images/SOLID_Img.png", "S.O.L.I.D.", null },
-                    { 2, "Object Oriented Programming(OOP) is a language model that is organized around objects rather than actions and data rather than logic. There are four pillars of OOP: Abstraction, Polymorphism, Inheritance, and Encapsulation. You can remember this mnemonic device - A.P.I.E., because pie is awesome!", "~/wwwroot/Images/OOP_Img.png", "O.O.P.", null },
-                    { 3, "There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan.", "~/wwwroot/Images/AGILE_Img.png", "Agile", null }
+                    { 1, "SOLID is an acronym for the first five object-oriented design(OOD) principles by Robert C. Martin. These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend, and are also a part of agile, an adaptive software development principle. [S]ingle Responsibility Principle, [O]pen/ Closed Principle, [L]iskov Substitution Principle, [I]ntegration Segregation Principle, [D]ependency Inversion Principle", "~/Images/SOLID_Img.png", "S.O.L.I.D.", null },
+                    { 2, "Object Oriented Programming(OOP) is a language model that is organized around objects rather than actions and data rather than logic. There are four pillars of OOP: Abstraction, Polymorphism, Inheritance, and Encapsulation. You can remember this mnemonic device - A.P.I.E., because pie is awesome!", "~/Images/OOP_Img.png", "O.O.P.", null },
+                    { 3, "There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan.", "~/Images/AGILE_Img.png", "Agile", null }
                 });
 
             migrationBuilder.InsertData(
@@ -279,24 +279,24 @@ namespace CoStar.Migrations
                 columns: new[] { "WhiteboardId", "UserId", "WhiteboardDescription", "WhiteboardImage", "WhiteboardName" },
                 values: new object[,]
                 {
-                    { 1, null, "Find the median of two sorted arrays.", "~/wwwroot/Images/MedianArrays_Img.png", "Median of Arrays" },
-                    { 2, null, "Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.", "~/wwwroot/Images/FizzBuzz_Img.png", "Fizz Buzz" }
+                    { 1, null, "Find the median of two sorted arrays.", "~/Images/MedianArrays_Img.png", "Median of Arrays" },
+                    { 2, null, "Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.", "~/Images/FizzBuzz_Img.png", "Fizz Buzz" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Links",
                 columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 1, "JavaScript language Documentation", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference", "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6" });
+                values: new object[] { 1, "JavaScript language Documentation", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference", "d5dced4f-2b99-4012-993d-babd57670625" });
 
             migrationBuilder.InsertData(
                 table: "Links",
                 columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 2, "C# language Documentation", "https://docs.microsoft.com/en-us/dotnet/csharp/", "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6" });
+                values: new object[] { 2, "C# language Documentation", "https://docs.microsoft.com/en-us/dotnet/csharp/", "d5dced4f-2b99-4012-993d-babd57670625" });
 
             migrationBuilder.InsertData(
                 table: "Links",
                 columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 3, "React - Getting Started", "https://reactjs.org/docs/getting-started.html", "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6" });
+                values: new object[] { 3, "React - Getting Started", "https://reactjs.org/docs/getting-started.html", "d5dced4f-2b99-4012-993d-babd57670625" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

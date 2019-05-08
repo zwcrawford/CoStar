@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoStar.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190508164714_initial")]
+    [Migration("20190508193944_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,9 +86,9 @@ namespace CoStar.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6",
+                            Id = "d5dced4f-2b99-4012-993d-babd57670625",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d32c4f4b-df85-4c76-8dfd-565d891de1bc",
+                            ConcurrencyStamp = "303917d8-12c7-47f5-93f2-dcbcdea11e32",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             EnrollDate = new DateTime(2008, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -97,17 +97,17 @@ namespace CoStar.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECqOMmaXXdjcAFeIa1LWKYV0u6CdQjCI9t+d76eZr35PlvEt5++WoO85g8y2Cr+1aQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKb/YtKzWa9Z2hvpm7j0HfItGXo4deK7HMCzp9QS/+Lk0/b+wHvh2YUy9tC1fKkfVQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "62efc551-f5ea-4acc-958d-88e089eaf069",
+                            SecurityStamp = "5e1e6bf5-bc33-4cc2-977f-683fafe372c5",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "271b6d94-525f-47ae-bb45-2ba1fab701d9",
+                            Id = "9ca2a02c-31cb-4240-bcdb-7cfbc90acab3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0670a879-17de-4239-abc8-587a4f588142",
+                            ConcurrencyStamp = "290f04c6-3a28-4444-9c5a-3177fc755b72",
                             Email = "guest@admin.com",
                             EmailConfirmed = true,
                             EnrollDate = new DateTime(2010, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -116,9 +116,9 @@ namespace CoStar.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@ADMIN.COM",
                             NormalizedUserName = "GUEST@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFM3E9VDfS3ErSEDUuppVNSWxWBD8iCzPnH58dsH4+b+8yNbKfB7/b1ZhRm7KqH2tw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAwJmbLHH+XXlVs/NJsjSj0crgYOjtOdySmSR9dlb7k5W4YuDorAQsBtBrCT0/eifQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c4d6cba4-e6e4-43c9-b3f3-1c90470b68ca",
+                            SecurityStamp = "b2e71416-6e81-48da-9ba8-606dc5b158fc",
                             TwoFactorEnabled = false,
                             UserName = "guest@admin.com"
                         });
@@ -150,21 +150,21 @@ namespace CoStar.Migrations
                             HelpfulLinkId = 1,
                             LinkDescription = "JavaScript language Documentation",
                             LinkUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
-                            UserId = "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6"
+                            UserId = "d5dced4f-2b99-4012-993d-babd57670625"
                         },
                         new
                         {
                             HelpfulLinkId = 2,
                             LinkDescription = "C# language Documentation",
                             LinkUrl = "https://docs.microsoft.com/en-us/dotnet/csharp/",
-                            UserId = "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6"
+                            UserId = "d5dced4f-2b99-4012-993d-babd57670625"
                         },
                         new
                         {
                             HelpfulLinkId = 3,
                             LinkDescription = "React - Getting Started",
                             LinkUrl = "https://reactjs.org/docs/getting-started.html",
-                            UserId = "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6"
+                            UserId = "d5dced4f-2b99-4012-993d-babd57670625"
                         });
                 });
 
@@ -242,21 +242,21 @@ namespace CoStar.Migrations
                         {
                             PrincipleId = 1,
                             PrincipleDescription = "SOLID is an acronym for the first five object-oriented design(OOD) principles by Robert C. Martin. These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend, and are also a part of agile, an adaptive software development principle. [S]ingle Responsibility Principle, [O]pen/ Closed Principle, [L]iskov Substitution Principle, [I]ntegration Segregation Principle, [D]ependency Inversion Principle",
-                            PrincipleImage = "~/wwwroot/Images/SOLID_Img.png",
+                            PrincipleImage = "~/Images/SOLID_Img.png",
                             PrincipleName = "S.O.L.I.D."
                         },
                         new
                         {
                             PrincipleId = 2,
                             PrincipleDescription = "Object Oriented Programming(OOP) is a language model that is organized around objects rather than actions and data rather than logic. There are four pillars of OOP: Abstraction, Polymorphism, Inheritance, and Encapsulation. You can remember this mnemonic device - A.P.I.E., because pie is awesome!",
-                            PrincipleImage = "~/wwwroot/Images/OOP_Img.png",
+                            PrincipleImage = "~/Images/OOP_Img.png",
                             PrincipleName = "O.O.P."
                         },
                         new
                         {
                             PrincipleId = 3,
                             PrincipleDescription = "There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan.",
-                            PrincipleImage = "~/wwwroot/Images/AGILE_Img.png",
+                            PrincipleImage = "~/Images/AGILE_Img.png",
                             PrincipleName = "Agile"
                         });
                 });
@@ -288,14 +288,14 @@ namespace CoStar.Migrations
                         {
                             WhiteboardId = 1,
                             WhiteboardDescription = "Find the median of two sorted arrays.",
-                            WhiteboardImage = "~/wwwroot/Images/MedianArrays_Img.png",
+                            WhiteboardImage = "~/Images/MedianArrays_Img.png",
                             WhiteboardName = "Median of Arrays"
                         },
                         new
                         {
                             WhiteboardId = 2,
                             WhiteboardDescription = "Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.",
-                            WhiteboardImage = "~/wwwroot/Images/FizzBuzz_Img.png",
+                            WhiteboardImage = "~/Images/FizzBuzz_Img.png",
                             WhiteboardName = "Fizz Buzz"
                         });
                 });
