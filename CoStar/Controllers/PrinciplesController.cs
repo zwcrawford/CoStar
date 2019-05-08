@@ -39,16 +39,16 @@ namespace CoStar.Controllers
 				return NotFound();
 			}
 
-			var principles = await _context.Principles
-			   .Include(p => p.UserId)
+			var principle = await _context.Principles
+			   .Include(p => p.User)
 			   .FirstOrDefaultAsync(m => m.PrincipleId == id);
 
-			if (principles == null)
+			if (principle == null)
 			{
 				return NotFound();
 			}
 
-			return View(principles);
+			return View(principle);
 		}
 
 		// GET: Principles/Create

@@ -23,6 +23,8 @@ namespace CoStar.Models
 		[Display(Name = "Principle Description")]
 		public string PrincipleDescription { get; set; }
 
-		public ApplicationUser UserId { get; set; }
+		public string UserId { get; set; }
+
+		public ApplicationUser User { get; set; }
 	}
 }
