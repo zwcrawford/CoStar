@@ -161,18 +161,18 @@ namespace CoStar.Migrations
                 name: "Links",
                 columns: table => new
                 {
-                    LinkId = table.Column<int>(nullable: false)
+                    HelpfulLinkId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     LinkUrl = table.Column<string>(nullable: false),
                     LinkDescription = table.Column<string>(nullable: false),
-                    UserIdId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Links", x => x.LinkId);
+                    table.PrimaryKey("PK_Links", x => x.HelpfulLinkId);
                     table.ForeignKey(
-                        name: "FK_Links_AspNetUsers_UserIdId",
-                        column: x => x.UserIdId,
+                        name: "FK_Links_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -187,14 +187,14 @@ namespace CoStar.Migrations
                     PrincipleImage = table.Column<string>(nullable: true),
                     PrincipleName = table.Column<string>(nullable: false),
                     PrincipleDescription = table.Column<string>(nullable: false),
-                    UserIdId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Principles", x => x.PrincipleId);
                     table.ForeignKey(
-                        name: "FK_Principles_AspNetUsers_UserIdId",
-                        column: x => x.UserIdId,
+                        name: "FK_Principles_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -208,14 +208,14 @@ namespace CoStar.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     IntQuestionName = table.Column<string>(nullable: false),
                     IntQuestionDescription = table.Column<string>(nullable: false),
-                    UserIdId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Questions", x => x.IntQuestionId);
                     table.ForeignKey(
-                        name: "FK_Questions_AspNetUsers_UserIdId",
-                        column: x => x.UserIdId,
+                        name: "FK_Questions_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -230,14 +230,14 @@ namespace CoStar.Migrations
                     WhiteboardImage = table.Column<string>(nullable: true),
                     WhiteboardName = table.Column<string>(nullable: false),
                     WhiteboardDescription = table.Column<string>(nullable: false),
-                    UserIdId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Whiteboards", x => x.WhiteboardId);
                     table.ForeignKey(
-                        name: "FK_Whiteboards_AspNetUsers_UserIdId",
-                        column: x => x.UserIdId,
+                        name: "FK_Whiteboards_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -246,36 +246,26 @@ namespace CoStar.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ApplicationUserImage", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "4516b530-a728-428d-b429-5c4433e55432", 0, null, "9187ea44-e262-4de7-8347-c2b6405cf068", "admin@admin.com", true, "Admin", "Admin", false, null, "admin@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAED8cCOSoCrLIZoXZTGLj9ViXc42CigHzcos05mM1k8HnN6oa7Hm+HYchNP8ausB6sQ==", null, false, "db96abf0-ebc4-43f3-b4b3-18772efc2b1c", false, "admin@admin.com" });
+                values: new object[] { "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6", 0, null, "d32c4f4b-df85-4c76-8dfd-565d891de1bc", "admin@admin.com", true, "Admin", "Admin", false, null, "admin@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAECqOMmaXXdjcAFeIa1LWKYV0u6CdQjCI9t+d76eZr35PlvEt5++WoO85g8y2Cr+1aQ==", null, false, "62efc551-f5ea-4acc-958d-88e089eaf069", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ApplicationUserImage", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "2b5cb8a2-1d65-4b22-8af7-4a1ac2a5610f", 0, null, "4c880e31-f1d6-4f15-9219-01ed0590898d", "guest@admin.com", true, "Guest", "Guest", false, null, "guest@ADMIN.COM", "GUEST@ADMIN.COM", "AQAAAAEAACcQAAAAEC8iUlCkaCFLVqQleRdj1XShKQiieVAYa+QVlKIqPlYk8gGhCEPrQr8WqapJ7r86Yw==", null, false, "af8b3989-88ee-42da-b2d1-14356ae71f88", false, "guest@admin.com" });
-
-            migrationBuilder.InsertData(
-                table: "Links",
-                columns: new[] { "LinkId", "LinkDescription", "LinkUrl", "UserIdId" },
-                values: new object[,]
-                {
-                    { 1, "JavaScript language Documentation", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference", null },
-                    { 2, "C# language Documentation", "https://docs.microsoft.com/en-us/dotnet/csharp/", null },
-                    { 3, "React - Getting Started", "https://reactjs.org/docs/getting-started.html", null }
-                });
+                values: new object[] { "271b6d94-525f-47ae-bb45-2ba1fab701d9", 0, null, "0670a879-17de-4239-abc8-587a4f588142", "guest@admin.com", true, "Guest", "Guest", false, null, "guest@ADMIN.COM", "GUEST@ADMIN.COM", "AQAAAAEAACcQAAAAEFM3E9VDfS3ErSEDUuppVNSWxWBD8iCzPnH58dsH4+b+8yNbKfB7/b1ZhRm7KqH2tw==", null, false, "c4d6cba4-e6e4-43c9-b3f3-1c90470b68ca", false, "guest@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Principles",
-                columns: new[] { "PrincipleId", "PrincipleDescription", "PrincipleImage", "PrincipleName", "UserIdId" },
+                columns: new[] { "PrincipleId", "PrincipleDescription", "PrincipleImage", "PrincipleName", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "SOLID is an acronym for the first five object-oriented design(OOD) principles by Robert C. Martin. These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend, and are also a part of agile, an adaptive software development principle. [S]ingle Responsibility Principle, [O]pen/ Closed Principle, [L]iskov Substitution Principle, [I]ntegration Segregation Principle, [D]ependency Inversion Principle", "../wwwroot/Images/SOLID_Img.png", "S.O.L.I.D.", null },
-                    { 2, "Object Oriented Programming(OOP) is a language model that is organized around objects rather than actions and data rather than logic. There are four pillars of OOP: Abstraction, Polymorphism, Inheritance, and Encapsulation. You can remember this mnemonic device - A.P.I.E., because pie is awesome!", "../wwwroot/Images/OOP_Img.png", "O.O.P.", null },
-                    { 3, "There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan.", "../wwwroot/Images/AGILE_Img.png", "Agile", null }
+                    { 1, "SOLID is an acronym for the first five object-oriented design(OOD) principles by Robert C. Martin. These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend, and are also a part of agile, an adaptive software development principle. [S]ingle Responsibility Principle, [O]pen/ Closed Principle, [L]iskov Substitution Principle, [I]ntegration Segregation Principle, [D]ependency Inversion Principle", "~/wwwroot/Images/SOLID_Img.png", "S.O.L.I.D.", null },
+                    { 2, "Object Oriented Programming(OOP) is a language model that is organized around objects rather than actions and data rather than logic. There are four pillars of OOP: Abstraction, Polymorphism, Inheritance, and Encapsulation. You can remember this mnemonic device - A.P.I.E., because pie is awesome!", "~/wwwroot/Images/OOP_Img.png", "O.O.P.", null },
+                    { 3, "There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan.", "~/wwwroot/Images/AGILE_Img.png", "Agile", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Questions",
-                columns: new[] { "IntQuestionId", "IntQuestionDescription", "IntQuestionName", "UserIdId" },
+                columns: new[] { "IntQuestionId", "IntQuestionDescription", "IntQuestionName", "UserId" },
                 values: new object[,]
                 {
                     { 1, "Alert and Prompt.", "What are the two types of pop-ups?", null },
@@ -286,12 +276,27 @@ namespace CoStar.Migrations
 
             migrationBuilder.InsertData(
                 table: "Whiteboards",
-                columns: new[] { "WhiteboardId", "UserIdId", "WhiteboardDescription", "WhiteboardImage", "WhiteboardName" },
+                columns: new[] { "WhiteboardId", "UserId", "WhiteboardDescription", "WhiteboardImage", "WhiteboardName" },
                 values: new object[,]
                 {
-                    { 1, null, "Find the median of two sorted arrays.", "../wwwroot/Images/MedianArrays_Img.png", "Median of Arrays" },
-                    { 2, null, "Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.", "../wwwroot/Images/FizzBuzz_Img.png", "Fizz Buzz" }
+                    { 1, null, "Find the median of two sorted arrays.", "~/wwwroot/Images/MedianArrays_Img.png", "Median of Arrays" },
+                    { 2, null, "Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.", "~/wwwroot/Images/FizzBuzz_Img.png", "Fizz Buzz" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Links",
+                columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
+                values: new object[] { 1, "JavaScript language Documentation", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference", "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6" });
+
+            migrationBuilder.InsertData(
+                table: "Links",
+                columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
+                values: new object[] { 2, "C# language Documentation", "https://docs.microsoft.com/en-us/dotnet/csharp/", "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6" });
+
+            migrationBuilder.InsertData(
+                table: "Links",
+                columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
+                values: new object[] { 3, "React - Getting Started", "https://reactjs.org/docs/getting-started.html", "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -333,24 +338,24 @@ namespace CoStar.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Links_UserIdId",
+                name: "IX_Links_UserId",
                 table: "Links",
-                column: "UserIdId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Principles_UserIdId",
+                name: "IX_Principles_UserId",
                 table: "Principles",
-                column: "UserIdId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Questions_UserIdId",
+                name: "IX_Questions_UserId",
                 table: "Questions",
-                column: "UserIdId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Whiteboards_UserIdId",
+                name: "IX_Whiteboards_UserId",
                 table: "Whiteboards",
-                column: "UserIdId");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

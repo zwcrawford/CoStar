@@ -8,8 +8,9 @@ namespace CoStar.Models
 {
 	public class HelpfulLink
 	{
+		[Required]
 		[Key]
-		public int LinkId { get; set; }
+		public int HelpfulLinkId { get; set; }
 
 		[Required]
 		[Display(Name = "Link URL")]
@@ -19,6 +20,8 @@ namespace CoStar.Models
 		[Display(Name = "Link Description")]
 		public string LinkDescription { get; set; }
 
-		public ApplicationUser UserId { get; set; }
+		public string UserId { get; set; }
+
+		public ApplicationUser User { get; set; }
 	}
 }

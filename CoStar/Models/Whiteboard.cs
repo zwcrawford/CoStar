@@ -21,6 +21,8 @@ namespace CoStar.Models
 		[Display(Name = "Whiteboard Description")]
 		public string WhiteboardDescription { get; set; }
 
-		public ApplicationUser UserId { get; set; }
+		public string UserId { get; set; }
+
+		public ApplicationUser User { get; set; }
 	}
 }

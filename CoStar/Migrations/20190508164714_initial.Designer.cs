@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoStar.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190506191041_initial")]
+    [Migration("20190508164714_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,9 +86,9 @@ namespace CoStar.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4516b530-a728-428d-b429-5c4433e55432",
+                            Id = "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9187ea44-e262-4de7-8347-c2b6405cf068",
+                            ConcurrencyStamp = "d32c4f4b-df85-4c76-8dfd-565d891de1bc",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             EnrollDate = new DateTime(2008, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -97,17 +97,17 @@ namespace CoStar.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAED8cCOSoCrLIZoXZTGLj9ViXc42CigHzcos05mM1k8HnN6oa7Hm+HYchNP8ausB6sQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECqOMmaXXdjcAFeIa1LWKYV0u6CdQjCI9t+d76eZr35PlvEt5++WoO85g8y2Cr+1aQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "db96abf0-ebc4-43f3-b4b3-18772efc2b1c",
+                            SecurityStamp = "62efc551-f5ea-4acc-958d-88e089eaf069",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "2b5cb8a2-1d65-4b22-8af7-4a1ac2a5610f",
+                            Id = "271b6d94-525f-47ae-bb45-2ba1fab701d9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4c880e31-f1d6-4f15-9219-01ed0590898d",
+                            ConcurrencyStamp = "0670a879-17de-4239-abc8-587a4f588142",
                             Email = "guest@admin.com",
                             EmailConfirmed = true,
                             EnrollDate = new DateTime(2010, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -116,9 +116,9 @@ namespace CoStar.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@ADMIN.COM",
                             NormalizedUserName = "GUEST@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC8iUlCkaCFLVqQleRdj1XShKQiieVAYa+QVlKIqPlYk8gGhCEPrQr8WqapJ7r86Yw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFM3E9VDfS3ErSEDUuppVNSWxWBD8iCzPnH58dsH4+b+8yNbKfB7/b1ZhRm7KqH2tw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "af8b3989-88ee-42da-b2d1-14356ae71f88",
+                            SecurityStamp = "c4d6cba4-e6e4-43c9-b3f3-1c90470b68ca",
                             TwoFactorEnabled = false,
                             UserName = "guest@admin.com"
                         });
@@ -126,7 +126,7 @@ namespace CoStar.Migrations
 
             modelBuilder.Entity("CoStar.Models.HelpfulLink", b =>
                 {
-                    b.Property<int>("LinkId")
+                    b.Property<int>("HelpfulLinkId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -136,32 +136,35 @@ namespace CoStar.Migrations
                     b.Property<string>("LinkUrl")
                         .IsRequired();
 
-                    b.Property<string>("UserIdId");
+                    b.Property<string>("UserId");
 
-                    b.HasKey("LinkId");
+                    b.HasKey("HelpfulLinkId");
 
-                    b.HasIndex("UserIdId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Links");
 
                     b.HasData(
                         new
                         {
-                            LinkId = 1,
+                            HelpfulLinkId = 1,
                             LinkDescription = "JavaScript language Documentation",
-                            LinkUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference"
+                            LinkUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
+                            UserId = "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6"
                         },
                         new
                         {
-                            LinkId = 2,
+                            HelpfulLinkId = 2,
                             LinkDescription = "C# language Documentation",
-                            LinkUrl = "https://docs.microsoft.com/en-us/dotnet/csharp/"
+                            LinkUrl = "https://docs.microsoft.com/en-us/dotnet/csharp/",
+                            UserId = "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6"
                         },
                         new
                         {
-                            LinkId = 3,
+                            HelpfulLinkId = 3,
                             LinkDescription = "React - Getting Started",
-                            LinkUrl = "https://reactjs.org/docs/getting-started.html"
+                            LinkUrl = "https://reactjs.org/docs/getting-started.html",
+                            UserId = "ba5dc3ad-68bd-431c-b6a5-3be6d4617bb6"
                         });
                 });
 
@@ -177,11 +180,11 @@ namespace CoStar.Migrations
                     b.Property<string>("IntQuestionName")
                         .IsRequired();
 
-                    b.Property<string>("UserIdId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("IntQuestionId");
 
-                    b.HasIndex("UserIdId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Questions");
 
@@ -226,11 +229,11 @@ namespace CoStar.Migrations
                     b.Property<string>("PrincipleName")
                         .IsRequired();
 
-                    b.Property<string>("UserIdId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("PrincipleId");
 
-                    b.HasIndex("UserIdId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Principles");
 
@@ -239,21 +242,21 @@ namespace CoStar.Migrations
                         {
                             PrincipleId = 1,
                             PrincipleDescription = "SOLID is an acronym for the first five object-oriented design(OOD) principles by Robert C. Martin. These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend, and are also a part of agile, an adaptive software development principle. [S]ingle Responsibility Principle, [O]pen/ Closed Principle, [L]iskov Substitution Principle, [I]ntegration Segregation Principle, [D]ependency Inversion Principle",
-                            PrincipleImage = "../wwwroot/Images/SOLID_Img.png",
+                            PrincipleImage = "~/wwwroot/Images/SOLID_Img.png",
                             PrincipleName = "S.O.L.I.D."
                         },
                         new
                         {
                             PrincipleId = 2,
                             PrincipleDescription = "Object Oriented Programming(OOP) is a language model that is organized around objects rather than actions and data rather than logic. There are four pillars of OOP: Abstraction, Polymorphism, Inheritance, and Encapsulation. You can remember this mnemonic device - A.P.I.E., because pie is awesome!",
-                            PrincipleImage = "../wwwroot/Images/OOP_Img.png",
+                            PrincipleImage = "~/wwwroot/Images/OOP_Img.png",
                             PrincipleName = "O.O.P."
                         },
                         new
                         {
                             PrincipleId = 3,
                             PrincipleDescription = "There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan.",
-                            PrincipleImage = "../wwwroot/Images/AGILE_Img.png",
+                            PrincipleImage = "~/wwwroot/Images/AGILE_Img.png",
                             PrincipleName = "Agile"
                         });
                 });
@@ -264,7 +267,7 @@ namespace CoStar.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("UserIdId");
+                    b.Property<string>("UserId");
 
                     b.Property<string>("WhiteboardDescription")
                         .IsRequired();
@@ -276,7 +279,7 @@ namespace CoStar.Migrations
 
                     b.HasKey("WhiteboardId");
 
-                    b.HasIndex("UserIdId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Whiteboards");
 
@@ -285,14 +288,14 @@ namespace CoStar.Migrations
                         {
                             WhiteboardId = 1,
                             WhiteboardDescription = "Find the median of two sorted arrays.",
-                            WhiteboardImage = "../wwwroot/Images/MedianArrays_Img.png",
+                            WhiteboardImage = "~/wwwroot/Images/MedianArrays_Img.png",
                             WhiteboardName = "Median of Arrays"
                         },
                         new
                         {
                             WhiteboardId = 2,
                             WhiteboardDescription = "Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.",
-                            WhiteboardImage = "../wwwroot/Images/FizzBuzz_Img.png",
+                            WhiteboardImage = "~/wwwroot/Images/FizzBuzz_Img.png",
                             WhiteboardName = "Fizz Buzz"
                         });
                 });
@@ -413,30 +416,30 @@ namespace CoStar.Migrations
 
             modelBuilder.Entity("CoStar.Models.HelpfulLink", b =>
                 {
-                    b.HasOne("CoStar.Models.ApplicationUser", "UserId")
+                    b.HasOne("CoStar.Models.ApplicationUser", "User")
                         .WithMany("HelpfulLinks")
-                        .HasForeignKey("UserIdId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("CoStar.Models.IntQuestion", b =>
                 {
-                    b.HasOne("CoStar.Models.ApplicationUser", "UserId")
+                    b.HasOne("CoStar.Models.ApplicationUser", "User")
                         .WithMany("IntQuestions")
-                        .HasForeignKey("UserIdId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("CoStar.Models.Principle", b =>
                 {
-                    b.HasOne("CoStar.Models.ApplicationUser", "UserId")
+                    b.HasOne("CoStar.Models.ApplicationUser", "User")
                         .WithMany("Principles")
-                        .HasForeignKey("UserIdId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("CoStar.Models.Whiteboard", b =>
                 {
-                    b.HasOne("CoStar.Models.ApplicationUser", "UserId")
+                    b.HasOne("CoStar.Models.ApplicationUser", "User")
                         .WithMany("Whiteboards")
-                        .HasForeignKey("UserIdId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
