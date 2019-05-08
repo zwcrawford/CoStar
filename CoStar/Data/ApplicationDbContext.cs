@@ -71,7 +71,7 @@ namespace CoStar.Data
 				new Principle
 				{
 					PrincipleId = 1,
-					PrincipleImage = "~/wwwroot/Images/SOLID_Img.png",
+					PrincipleImage = "~/Images/SOLID_Img.png",
 					PrincipleName= "S.O.L.I.D.",
 					PrincipleDescription="SOLID is an acronym for the first five object-oriented design(OOD) principles by Robert C. Martin. These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend, and are also a part of agile, an adaptive software development principle. [S]ingle Responsibility Principle, [O]pen/ Closed Principle, [L]iskov Substitution Principle, [I]ntegration Segregation Principle, [D]ependency Inversion Principle",
 					UserId = null
@@ -81,7 +81,7 @@ namespace CoStar.Data
 				new Principle
 				{
 					PrincipleId = 2,
-					PrincipleImage = "~/wwwroot/Images/OOP_Img.png",
+					PrincipleImage = "~/Images/OOP_Img.png",
 					PrincipleName="O.O.P.",
 					PrincipleDescription="Object Oriented Programming(OOP) is a language model that is organized around objects rather than actions and data rather than logic. There are four pillars of OOP: Abstraction, Polymorphism, Inheritance, and Encapsulation. You can remember this mnemonic device - A.P.I.E., because pie is awesome!",
 					UserId = null
@@ -91,7 +91,7 @@ namespace CoStar.Data
 				new Principle
 				{
 					PrincipleId = 3,
-					PrincipleImage = "~/wwwroot/Images/AGILE_Img.png",
+					PrincipleImage = "~/Images/AGILE_Img.png",
 					PrincipleName="Agile",
 					PrincipleDescription="There are four values derived from the Agile Manifesto: Individuals and Interactions Over Processes and Tools, Working Software Over Comprehensive Documentation, Customer Collaboration Over Contract Negotiation, Responding to Change Over Following a Plan.",
 					UserId = null
@@ -107,7 +107,7 @@ namespace CoStar.Data
 				new Whiteboard
 				{
 					WhiteboardId = 1,
-					WhiteboardImage = "~/wwwroot/Images/MedianArrays_Img.png",
+					WhiteboardImage = "~/Images/MedianArrays_Img.png",
 					WhiteboardName="Median of Arrays",
 					WhiteboardDescription="Find the median of two sorted arrays.",
 					UserId= null
@@ -116,7 +116,7 @@ namespace CoStar.Data
 				new Whiteboard
 				{
 					WhiteboardId = 2,
-					WhiteboardImage = "~/wwwroot/Images/FizzBuzz_Img.png",
+					WhiteboardImage = "~/Images/FizzBuzz_Img.png",
 					WhiteboardName="Fizz Buzz",
 					WhiteboardDescription="Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.",
 					UserId= null

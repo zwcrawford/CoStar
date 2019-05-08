@@ -13,6 +13,7 @@ namespace CoStar.Models
 		[Key]
 		public int PrincipleId { get; set; }
 
+		[Display(Name = "Principle Image")]
 		public string PrincipleImage { get; set; }
 
 		[Required]
