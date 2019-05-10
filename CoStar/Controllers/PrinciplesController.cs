@@ -76,13 +76,15 @@ namespace CoStar.Controllers
 						var uniqueFileName = GetUniqueFileName(model.PrincipleFileToSave.FileName);
 						var uploads = Path.Combine(_hostEnviro.WebRootPath, "Images");
 						var filePath = Path.Combine(uploads, uniqueFileName);
+						var imagepath = "~/Images/" + uniqueFileName;
+						model.Principle.PrincipleImage = imagepath;
 						model.PrincipleFileToSave.CopyTo(new FileStream(filePath, FileMode.Create));
-					var User = await GetCurrentUserAsync();
-					model.UserId = User.Id;
-					_context.Add(model);
-					await _context.SaveChangesAsync();
+						var User = await GetCurrentUserAsync();
+						model.Principle.UserId = User.Id;
+						_context.Add(model.Principle);
+						await _context.SaveChangesAsync();
 					}
-					return RedirectToAction("Details", new { id = model.PrincipleId });
+					return RedirectToAction("Details", new { id = model.Principle.PrincipleId });
 				}
 			}
 			catch (DbUpdateException /* exception */)
