@@ -1,0 +1,43 @@
+﻿@model CoStar.Models.ViewModels.PrincipleCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Principle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <p class="control-label">Upload a file using this form:</p>
+                <input type="file" name="files" asp-for="PrincipleFileToSave" ><br/>
+                <span asp-validation-for="PrincipleFileToSave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrincipleName" class="control-label"></label>
+                <input asp-for="PrincipleName" class="form-control" />
+                <span asp-validation-for="PrincipleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrincipleDescription" class="control-label"></label>
+                <input asp-for="PrincipleDescription" class="form-control" />
+                <span asp-validation-for="PrincipleDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CoStar.Data;
 using CoStar.Models;
+using CoStar.Models.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +16,13 @@ namespace CoStar.Controllers
 {
     public class PrinciplesController : Controller
     {
+		private readonly IHostingEnvironment _hostEnviro;
 		private readonly ApplicationDbContext _context;
 		private readonly UserManager<ApplicationUser> _userManager;
 
-		public PrinciplesController(ApplicationDbContext ctx,
-						  UserManager<ApplicationUser> userManager)
+		public PrinciplesController(IHostingEnvironment hostingEnvironment, ApplicationDbContext ctx, UserManager<ApplicationUser> userManager)
 		{
+			_hostEnviro = hostingEnvironment;
 			_userManager = userManager;
 			_context = ctx;
 		}
@@ -54,25 +58,50 @@ namespace CoStar.Controllers
 		// GET: Principles/Create
 		public ActionResult Create()
         {
-            return View();
-        }
+			return View(new PrincipleCreateViewModel());
+		}
 
-        // POST: Principles/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+		// POST: Principles/Create
+		[HttpPost]
+		public async Task<IActionResult> Create(PrincipleCreateViewModel model)
+		{
+			try
+			{
+				//ModelState.Remove("User");
+				//ModelState.Remove("UserId");
+				if (ModelState.IsValid)
+				{
+					if (model.PrincipleFileToSave != null)
+					{
+						var uniqueFileName = GetUniqueFileName(model.PrincipleFileToSave.FileName);
+						var uploads = Path.Combine(_hostEnviro.WebRootPath, "uploads");
+						var filePath = Path.Combine(uploads, uniqueFileName);
+						model.PrincipleFileToSave.CopyTo(new FileStream(filePath, FileMode.Create));
+					var User = await GetCurrentUserAsync();
+					model.UserId = User.Id;
+					_context.Add(model);
+					await _context.SaveChangesAsync();
+					}
+					return RedirectToAction("Details", new { id = model.PrincipleId });
+				}
+			}
+			catch (DbUpdateException /* exception */)
+			{
+				//Log the error (uncomment ex variable name and write a log.
+				ModelState.AddModelError("", "Unable to save changes. " +
+					"Try again, and if the problem persists " +
+					"see your system administrator.");
+			}
+			return View(model);
+		}
+		private string GetUniqueFileName(string fileName)
+		{
+			fileName = Path.GetFileName(fileName);
+			return Path.GetFileNameWithoutExtension(fileName)
+					  + "_"
+					  + Guid.NewGuid().ToString().Substring(0, 4)
+					  + Path.GetExtension(fileName);
+		}
 
 		// GET: Principles/Edit/5
 		public async Task<IActionResult> Edit(int? id)
