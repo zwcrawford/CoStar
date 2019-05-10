@@ -74,7 +74,7 @@ namespace CoStar.Controllers
 					if (model.PrincipleFileToSave != null)
 					{
 						var uniqueFileName = GetUniqueFileName(model.PrincipleFileToSave.FileName);
-						var uploads = Path.Combine(_hostEnviro.WebRootPath, "uploads");
+						var uploads = Path.Combine(_hostEnviro.WebRootPath, "Images");
 						var filePath = Path.Combine(uploads, uniqueFileName);
 						model.PrincipleFileToSave.CopyTo(new FileStream(filePath, FileMode.Create));
 					var User = await GetCurrentUserAsync();
