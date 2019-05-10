@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace CoStar.Models
+namespace CoStar.Models.ViewModels
 {
-	public class Principle
+	public class PrincipleCreateViewModel
 	{
-	
+
 		[Key]
 		public int PrincipleId { get; set; }
 
@@ -28,5 +27,7 @@ namespace CoStar.Models
 		public string UserId { get; set; }
 
 		public ApplicationUser User { get; set; }
+
+		public IFormFile PrincipleFileToSave { get; set; }
 	}
 }
