@@ -67,23 +67,32 @@ namespace CoStar.Controllers
 		{
 			try
 			{
-				//ModelState.Remove("User");
-				//ModelState.Remove("UserId");
+				ModelState.Remove("User");
+				ModelState.Remove("UserId");
 				if (ModelState.IsValid)
 				{
 					if (model.PrincipleFileToSave != null)
 					{
+						// These are required to save the file to the project's wwwroot/Images folder.
 						var uniqueFileName = GetUniqueFileName(model.PrincipleFileToSave.FileName);
 						var uploads = Path.Combine(_hostEnviro.WebRootPath, "Images");
 						var filePath = Path.Combine(uploads, uniqueFileName);
+						// Creating a formatted string to save to the Db.
 						var imagepath = "~/Images/" + uniqueFileName;
+						// Assign that variable to PrincipleImage.
+						// Must drill down through the "model" parameter passed in here.
 						model.Principle.PrincipleImage = imagepath;
 						model.PrincipleFileToSave.CopyTo(new FileStream(filePath, FileMode.Create));
+						// Identity.
 						var User = await GetCurrentUserAsync();
 						model.Principle.UserId = User.Id;
+						// Based on the debugger, the file is added to the Images folder here. 
+
+						// Data passed to Db.
 						_context.Add(model.Principle);
 						await _context.SaveChangesAsync();
 					}
+					// Redirect to the Details view of the newly created item.
 					return RedirectToAction("Details", new { id = model.Principle.PrincipleId });
 				}
 			}
