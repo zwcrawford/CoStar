@@ -1,4 +1,4 @@
-﻿@model CoStar.Models.Principle
+﻿@model CoStar.Models.ViewModels.PrincipleEditViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,23 +10,28 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PrincipleId" />
+            <input type="hidden" asp-for="Principle.PrincipleId" />
             <div class="form-group">
-                <label asp-for="PrincipleImage" class="control-label"></label>
-                <input asp-for="PrincipleImage" class="form-control" />
-                <span asp-validation-for="PrincipleImage" class="text-danger"></span>
+                <p class="control-label">Upload a file using this form:</p>
+                <input asp-for="PrincipleFileToSave"><br />
+                <span asp-validation-for="PrincipleFileToSave" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrincipleName" class="control-label"></label>
-                <input asp-for="PrincipleName" class="form-control" />
-                <span asp-validation-for="PrincipleName" class="text-danger"></span>
+                <label asp-for="Principle.PrincipleImage" class="control-label"></label>
+                <input asp-for="Principle.PrincipleImage" class="form-control" />
+                <span asp-validation-for="Principle.PrincipleImage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrincipleDescription" class="control-label"></label>
-                <input asp-for="PrincipleDescription" class="form-control" />
-                <span asp-validation-for="PrincipleDescription" class="text-danger"></span>
+                <label asp-for="Principle.PrincipleName" class="control-label"></label>
+                <input asp-for="Principle.PrincipleName" class="form-control" />
+                <span asp-validation-for="Principle.PrincipleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Principle.PrincipleDescription" class="control-label"></label>
+                <textarea asp-for="Principle.PrincipleDescription" class="form-control" rows="4" cols="50"></textarea>
+                <span asp-validation-for="Principle.PrincipleDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
