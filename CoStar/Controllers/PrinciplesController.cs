@@ -67,8 +67,8 @@ namespace CoStar.Controllers
 		{
 			try
 			{
-				ModelState.Remove("User");
-				ModelState.Remove("UserId");
+				//ModelState.Remove("User");
+				//ModelState.Remove("UserId");
 				if (ModelState.IsValid)
 				{
 					if (model.PrincipleFileToSave != null)
@@ -105,6 +105,7 @@ namespace CoStar.Controllers
 			}
 			return View(model);
 		}
+
 		private string GetUniqueFileName(string fileName)
 		{
 			fileName = Path.GetFileName(fileName);
@@ -114,7 +115,7 @@ namespace CoStar.Controllers
 					  + Path.GetExtension(fileName);
 		}
 
-		// GET: Principles/Edit/5
+		// GET: Students/Edit/5
 		public async Task<IActionResult> Edit(int? id)
 		{
 			if (id == null)
@@ -128,42 +129,53 @@ namespace CoStar.Controllers
 				return NotFound();
 			}
 			
-			return View(principle);
+			var viewModel = new PrincipleEditViewModel()
+			{
+				Principle = principle
+			};
+			return View(viewModel);
 		}
 
-		// POST: Principles/Edit/5
+		// POST: Students/Edit/5
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost, ActionName("Edit")]
+		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> EditPost(int? id)
+		public async Task<IActionResult> Edit(int id, PrincipleEditViewModel viewModel)
 		{
-			if (id == null)
+			var principle = viewModel.Principle;
+
+			if (id != principle.PrincipleId)
 			{
 				return NotFound();
 			}
-			var principleToUpdate = await _context.Principles.FirstOrDefaultAsync(p => p.PrincipleId == id);
-			if (await TryUpdateModelAsync<Principle>(
-				principleToUpdate,
-				"",
-				p => p.PrincipleImage, p => p.PrincipleName, p => p.PrincipleDescription))
+
+			if (ModelState.IsValid)
 			{
 				try
 				{
+					_context.Update(principle);
 					await _context.SaveChangesAsync();
-					return RedirectToAction(nameof(Index));
 				}
-				catch (DbUpdateException /* exception */)
+				catch (DbUpdateConcurrencyException)
 				{
-					//Log the error (uncomment ex variable name and write a log.)
-					ModelState.AddModelError("", "Unable to save changes. " +
-						"Try again, and if the problem persists, " +
-						"see your system administrator.");
+					if (!PrincipleExists(principle.PrincipleId))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
 				}
+				return RedirectToAction(nameof(Index));
 			}
-			return View(principleToUpdate);
+			return View(viewModel);
 		}
-
+		private bool PrincipleExists(int id)
+		{
+			return _context.Principles.Any(e => e.PrincipleId == id);
+		}
 		// GET: Principles/Delete/5
 		public ActionResult Delete(int id)
         {
