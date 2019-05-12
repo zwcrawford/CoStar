@@ -1,4 +1,4 @@
-﻿@model CoStar.Models.Whiteboard
+﻿@model CoStar.Models.ViewModels.WhiteboardCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -10,27 +10,24 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="WhiteboardImage" class="control-label"></label>
-                <input asp-for="WhiteboardImage" class="form-control" />
-                <span asp-validation-for="WhiteboardImage" class="text-danger"></span>
+                <p class="control-label">Upload a file using this form:</p>
+                <input asp-for="WhiteboardFileToSave"><br />
+                <span asp-validation-for="WhiteboardFileToSave" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WhiteboardName" class="control-label"></label>
-                <input asp-for="WhiteboardName" class="form-control" />
-                <span asp-validation-for="WhiteboardName" class="text-danger"></span>
+                <label asp-for="Whiteboard.WhiteboardName" class="control-label"></label>
+                <input asp-for="Whiteboard.WhiteboardName" class="form-control" />
+                <span asp-validation-for="Whiteboard.WhiteboardName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WhiteboardDescription" class="control-label"></label>
-                <input asp-for="WhiteboardDescription" class="form-control" />
-                <span asp-validation-for="WhiteboardDescription" class="text-danger"></span>
+                <label asp-for="Whiteboard.WhiteboardDescription" class="control-label"></label>
+                <input asp-for="Whiteboard.WhiteboardDescription" class="form-control" />
+                <span asp-validation-for="Whiteboard.WhiteboardDescription" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
