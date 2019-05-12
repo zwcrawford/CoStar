@@ -128,7 +128,7 @@ namespace CoStar.Controllers
 			{
 				return NotFound();
 			}
-			
+			// Must initialize 
 			var viewModel = new PrincipleEditViewModel()
 			{
 				Principle = principle
@@ -154,8 +154,34 @@ namespace CoStar.Controllers
 			{
 				try
 				{
-					_context.Update(principle);
-					await _context.SaveChangesAsync();
+					//ModelState.Remove("User");
+					//ModelState.Remove("UserId");
+					if (ModelState.IsValid)
+					{
+						if (viewModel.PrincipleFileToSave != null)
+						{
+							// These are required to save the file to the project's wwwroot/Images folder.
+							var uniqueFileName = GetUniqueFileName(viewModel.PrincipleFileToSave.FileName);
+							var uploads = Path.Combine(_hostEnviro.WebRootPath, "Images");
+							var filePath = Path.Combine(uploads, uniqueFileName);
+							// Creating a formatted string to save to the Db.
+							var imagepath = "~/Images/" + uniqueFileName;
+							// Assign that variable to PrincipleImage.
+							// Must drill down through the "model" parameter passed in here.
+							viewModel.Principle.PrincipleImage = imagepath;
+							viewModel.PrincipleFileToSave.CopyTo(new FileStream(filePath, FileMode.Create));
+							// Identity.
+							var User = await GetCurrentUserAsync();
+							viewModel.Principle.UserId = User.Id;
+							// Based on the debugger, the file is added to the Images folder here. 
+
+							// Data passed to Db.
+							_context.Update(viewModel.Principle);
+							await _context.SaveChangesAsync();
+						}
+						// Redirect to the Details view of the newly created item.
+						return RedirectToAction("Details", new { id = viewModel.Principle.PrincipleId });
+					}
 				}
 				catch (DbUpdateConcurrencyException)
 				{
