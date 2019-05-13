@@ -115,7 +115,7 @@ namespace CoStar.Controllers
 					  + Path.GetExtension(fileName);
 		}
 
-		// GET: Students/Edit/5
+		// GET: Principles/Edit/5
 		public async Task<IActionResult> Edit(int? id)
 		{
 			if (id == null)
@@ -131,12 +131,13 @@ namespace CoStar.Controllers
 			// Must initialize 
 			var viewModel = new PrincipleEditViewModel()
 			{
-				Principle = principle
+				Principle = principle,
+				PrincipleFileToSave = 
 			};
 			return View(viewModel);
 		}
 
-		// POST: Students/Edit/5
+		// POST: Principles/Edit/5
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
@@ -174,11 +175,10 @@ namespace CoStar.Controllers
 							var User = await GetCurrentUserAsync();
 							viewModel.Principle.UserId = User.Id;
 							// Based on the debugger, the file is added to the Images folder here. 
-
-							// Data passed to Db.
-							_context.Update(viewModel.Principle);
-							await _context.SaveChangesAsync();
 						}
+						// Data passed to Db.
+						_context.Update(viewModel.Principle);
+						await _context.SaveChangesAsync();
 						// Redirect to the Details view of the newly created item.
 						return RedirectToAction("Details", new { id = viewModel.Principle.PrincipleId });
 					}
@@ -203,26 +203,33 @@ namespace CoStar.Controllers
 			return _context.Principles.Any(e => e.PrincipleId == id);
 		}
 		// GET: Principles/Delete/5
-		public ActionResult Delete(int id)
-        {
-            return View();
-        }
+		public async Task<IActionResult> Delete(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-        // POST: Principles/Delete/5
-        [HttpPost]
+			var principle = await _context.Principles
+				.Include(p => p.User)
+				.FirstOrDefaultAsync(p => p.PrincipleId == id);
+			if (principle == null)
+			{
+				return NotFound();
+			}
+
+			return View(principle);
+		}
+
+		// POST: Principles/Delete/5
+		[HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+		public async Task<IActionResult> DeleteConfirmed(int id)
+		{
+			var principle = await _context.Principles.FindAsync(id);
+			_context.Principles.Remove(principle);
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
+		}
+	}
 }
