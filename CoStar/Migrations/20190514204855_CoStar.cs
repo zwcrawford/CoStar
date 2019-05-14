@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CoStar.Migrations
 {
-    public partial class initial : Migration
+    public partial class CoStar : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,6 @@ namespace CoStar.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    ApplicationUserImage = table.Column<byte[]>(nullable: true),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
                     EnrollDate = table.Column<DateTime>(nullable: false, defaultValueSql: "GETDATE()")
@@ -245,13 +244,13 @@ namespace CoStar.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ApplicationUserImage", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "d5dced4f-2b99-4012-993d-babd57670625", 0, null, "303917d8-12c7-47f5-93f2-dcbcdea11e32", "admin@admin.com", true, "Admin", "Admin", false, null, "admin@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEKb/YtKzWa9Z2hvpm7j0HfItGXo4deK7HMCzp9QS/+Lk0/b+wHvh2YUy9tC1fKkfVQ==", null, false, "5e1e6bf5-bc33-4cc2-977f-683fafe372c5", false, "admin@admin.com" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "1c78a4e0-70d5-4fd1-bc73-317defa17ed5", 0, "34cb591b-4859-4c2e-97c6-0a29f0f42c24", "admin@admin.com", true, "Admin", "Admin", false, null, "admin@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEDJEsmLNsmirPUPtmRzi2ARVyq9+4PbbMUI9KJ1YZPnqdH7KGUXBLqjrFlCcAyjgPQ==", null, false, "2a2447a3-d351-4d8d-8835-7b5cf70a21f5", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ApplicationUserImage", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "9ca2a02c-31cb-4240-bcdb-7cfbc90acab3", 0, null, "290f04c6-3a28-4444-9c5a-3177fc755b72", "guest@admin.com", true, "Guest", "Guest", false, null, "guest@ADMIN.COM", "GUEST@ADMIN.COM", "AQAAAAEAACcQAAAAEAwJmbLHH+XXlVs/NJsjSj0crgYOjtOdySmSR9dlb7k5W4YuDorAQsBtBrCT0/eifQ==", null, false, "b2e71416-6e81-48da-9ba8-606dc5b158fc", false, "guest@admin.com" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "04835528-d4e2-413a-bd01-4fd247170c73", 0, "bf19c45e-e037-4c42-9b58-f59279dc06f9", "guest@admin.com", true, "Guest", "Guest", false, null, "guest@ADMIN.COM", "GUEST@ADMIN.COM", "AQAAAAEAACcQAAAAEP9pixepBBoOtI09ZLzDDAwFFKtCNPKMg4XOpL2mwKNs1IWSSvI0rim2T3uBouZ4Fw==", null, false, "2837439a-df99-4d30-be2a-5b8d46443175", false, "guest@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Principles",
@@ -286,17 +285,17 @@ namespace CoStar.Migrations
             migrationBuilder.InsertData(
                 table: "Links",
                 columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 1, "JavaScript language Documentation", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference", "d5dced4f-2b99-4012-993d-babd57670625" });
+                values: new object[] { 1, "JavaScript language Documentation", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference", "1c78a4e0-70d5-4fd1-bc73-317defa17ed5" });
 
             migrationBuilder.InsertData(
                 table: "Links",
                 columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 2, "C# language Documentation", "https://docs.microsoft.com/en-us/dotnet/csharp/", "d5dced4f-2b99-4012-993d-babd57670625" });
+                values: new object[] { 2, "C# language Documentation", "https://docs.microsoft.com/en-us/dotnet/csharp/", "1c78a4e0-70d5-4fd1-bc73-317defa17ed5" });
 
             migrationBuilder.InsertData(
                 table: "Links",
                 columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 3, "React - Getting Started", "https://reactjs.org/docs/getting-started.html", "d5dced4f-2b99-4012-993d-babd57670625" });
+                values: new object[] { 3, "React - Getting Started", "https://reactjs.org/docs/getting-started.html", "1c78a4e0-70d5-4fd1-bc73-317defa17ed5" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
