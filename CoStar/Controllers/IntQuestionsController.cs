@@ -7,17 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CoStar.Data;
 using CoStar.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoStar.Controllers
 {
     public class IntQuestionsController : Controller
     {
         private readonly ApplicationDbContext _context;
+		private readonly UserManager<ApplicationUser> _userManager;
 
-        public IntQuestionsController(ApplicationDbContext context)
+		public IntQuestionsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
-        }
+			_userManager = userManager;
+		}
+		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: IntQuestions
         public async Task<IActionResult> Index()
@@ -26,8 +30,8 @@ namespace CoStar.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: IntQuestions/Details/5
-        public async Task<IActionResult> Details(int? id)
+		// GET: IntQuestions/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

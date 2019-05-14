@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using CoStar.Data;
@@ -132,7 +133,6 @@ namespace CoStar.Controllers
 			var viewModel = new PrincipleEditViewModel()
 			{
 				Principle = principle,
-				PrincipleFileToSave = 
 			};
 			return View(viewModel);
 		}
@@ -224,7 +224,7 @@ namespace CoStar.Controllers
 		// POST: Principles/Delete/5
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public async Task<IActionResult> DeleteConfirmed(int id)
+		public async Task<IActionResult> DeleteConfirmed(int id, PrincipleDeleteViewModel viewModel)
 		{
 			var principle = await _context.Principles.FindAsync(id);
 			_context.Principles.Remove(principle);

@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CoStar.Data;
 using CoStar.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoStar.Controllers
 {
     public class HelpfulLinksController : Controller
     {
         private readonly ApplicationDbContext _context;
+		private readonly UserManager<ApplicationUser> _userManager;
 
-        public HelpfulLinksController(ApplicationDbContext context)
+		public HelpfulLinksController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
-        }
+			_userManager = userManager;
+		}
+		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-        // GET: HelpfulLinks
-        public async Task<IActionResult> Index()
+		// GET: HelpfulLinks
+		public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Links.Include(h => h.User);
             return View(await applicationDbContext.ToListAsync());
