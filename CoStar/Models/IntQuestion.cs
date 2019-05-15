@@ -12,11 +12,11 @@ namespace CoStar.Models
 		public int IntQuestionId { get; set; }
 
 		[Required]
-		[Display(Name = "Interview Question Name")]
+		[Display(Name = "Question")]
 		public string IntQuestionName { get; set; }
 
 		[Required]
-		[Display(Name = "Interview Question Description")]
+		[Display(Name = "Answer")]
 		public string IntQuestionDescription { get; set; }
 
 		public string UserId { get; set; }
