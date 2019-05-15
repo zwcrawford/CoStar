@@ -204,27 +204,35 @@ namespace CoStar.Controllers
 		{
 			return _context.Whiteboards.Any(e => e.WhiteboardId == id);
 		}
+
 		// GET: Whiteboards/Delete/5
-		public ActionResult Delete(int id)
+		public async Task<IActionResult> Delete(int? id)
 		{
-			return View();
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var whiteboard = await _context.Whiteboards
+				.Include(w => w.User)
+				.FirstOrDefaultAsync(w => w.WhiteboardId == id);
+			if (whiteboard == null)
+			{
+				return NotFound();
+			}
+
+			return View(whiteboard);
 		}
 
 		// POST: Whiteboards/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
+		public async Task<IActionResult> DeleteConfirmed(int id, WhiteboardDeleteViewModel viewModel)
 		{
-			try
-			{
-				// TODO: Add delete logic here
-
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
+			var whiteboard = await _context.Whiteboards.FindAsync(id);
+			_context.Whiteboards.Remove(whiteboard);
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }
