@@ -20,7 +20,6 @@ namespace CoStar.Controllers
 		private readonly IHostingEnvironment _hostEnviro;
 		private readonly ApplicationDbContext _context;
 		private readonly UserManager<ApplicationUser> _userManager;
-		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
 		public PrinciplesController(IHostingEnvironment hostingEnvironment, ApplicationDbContext ctx, UserManager<ApplicationUser> userManager)
 		{
@@ -28,6 +27,7 @@ namespace CoStar.Controllers
 			_userManager = userManager;
 			_context = ctx;
 		}
+		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
 		// GET: Principles
 		public async Task<IActionResult> Index()

@@ -245,12 +245,22 @@ namespace CoStar.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1c78a4e0-70d5-4fd1-bc73-317defa17ed5", 0, "34cb591b-4859-4c2e-97c6-0a29f0f42c24", "admin@admin.com", true, "Admin", "Admin", false, null, "admin@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEDJEsmLNsmirPUPtmRzi2ARVyq9+4PbbMUI9KJ1YZPnqdH7KGUXBLqjrFlCcAyjgPQ==", null, false, "2a2447a3-d351-4d8d-8835-7b5cf70a21f5", false, "admin@admin.com" });
+                values: new object[] { "d90fc734-1d90-4d18-9d56-d36d0e64e4e3", 0, "e9a474d4-be40-47a8-81bf-c80f18d4d39c", "admin@admin.com", true, "Admin", "Admin", false, null, "admin@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEAqnnoM8b7tk9kWCbSC1HM8BYQUc/Aw59IHmVotsEZ0Zz7gx1i3L6x8jo82T7DCWrg==", null, false, "1b6ebe0d-774f-4713-bc5d-14616894c8ac", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "04835528-d4e2-413a-bd01-4fd247170c73", 0, "bf19c45e-e037-4c42-9b58-f59279dc06f9", "guest@admin.com", true, "Guest", "Guest", false, null, "guest@ADMIN.COM", "GUEST@ADMIN.COM", "AQAAAAEAACcQAAAAEP9pixepBBoOtI09ZLzDDAwFFKtCNPKMg4XOpL2mwKNs1IWSSvI0rim2T3uBouZ4Fw==", null, false, "2837439a-df99-4d30-be2a-5b8d46443175", false, "guest@admin.com" });
+                values: new object[] { "27f13a6b-6f6a-4b89-81dd-77d58d5a1611", 0, "cd618967-642b-4726-ad50-92e322b47fe3", "guest@admin.com", true, "Guest", "Guest", false, null, "guest@ADMIN.COM", "GUEST@ADMIN.COM", "AQAAAAEAACcQAAAAEEDK6Pvx9qqjp9mhTqVRc4KcC5BbR3T659Sktv3msHMOYuG52lLB7HWMHdaW433ebA==", null, false, "996819af-a9cc-447a-9d5c-b7ed628661d5", false, "guest@admin.com" });
+
+            migrationBuilder.InsertData(
+                table: "Links",
+                columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "JavaScript language Documentation", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference", null },
+                    { 2, "C# language Documentation", "https://docs.microsoft.com/en-us/dotnet/csharp/", null },
+                    { 3, "React - Getting Started", "https://reactjs.org/docs/getting-started.html", null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Principles",
@@ -281,21 +291,6 @@ namespace CoStar.Migrations
                     { 1, null, "Find the median of two sorted arrays.", "~/Images/MedianArrays_Img.png", "Median of Arrays" },
                     { 2, null, "Write a program that prints the numbers from 1 to 100 (here I have only written it for 1 to 15). But for multiples of three print 'Fizz' instead of the number and for the multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.", "~/Images/FizzBuzz_Img.png", "Fizz Buzz" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Links",
-                columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 1, "JavaScript language Documentation", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference", "1c78a4e0-70d5-4fd1-bc73-317defa17ed5" });
-
-            migrationBuilder.InsertData(
-                table: "Links",
-                columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 2, "C# language Documentation", "https://docs.microsoft.com/en-us/dotnet/csharp/", "1c78a4e0-70d5-4fd1-bc73-317defa17ed5" });
-
-            migrationBuilder.InsertData(
-                table: "Links",
-                columns: new[] { "HelpfulLinkId", "LinkDescription", "LinkUrl", "UserId" },
-                values: new object[] { 3, "React - Getting Started", "https://reactjs.org/docs/getting-started.html", "1c78a4e0-70d5-4fd1-bc73-317defa17ed5" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

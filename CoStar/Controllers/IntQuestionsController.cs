@@ -26,9 +26,9 @@ namespace CoStar.Controllers
         // GET: IntQuestions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Questions.Include(i => i.User);
-            return View(await applicationDbContext.ToListAsync());
-        }
+			var currentUser = await GetCurrentUserAsync();
+			return View(await _context.Questions.Where(q => q.UserId == currentUser.Id || q.UserId == null).ToListAsync());
+		}
 
 		// GET: IntQuestions/Details/5
 		public async Task<IActionResult> Details(int? id)

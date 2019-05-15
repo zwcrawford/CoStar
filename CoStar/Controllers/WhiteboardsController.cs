@@ -20,6 +20,7 @@ namespace CoStar.Controllers
 		private readonly ApplicationDbContext _context;
 		private readonly UserManager<ApplicationUser> _userManager;
 
+
 		public WhiteboardsController(IHostingEnvironment hostingEnvironment, ApplicationDbContext ctx, UserManager<ApplicationUser> userManager)
 		{
 			_hostEnviro = hostingEnvironment;
@@ -32,7 +33,8 @@ namespace CoStar.Controllers
 		// GET: Whiteboards
 		public async Task<IActionResult> Index()
 		{
-			return View(await _context.Whiteboards.ToListAsync());
+			var currentUser = await GetCurrentUserAsync();
+			return View(await _context.Whiteboards.Where(w => w.UserId == currentUser.Id || w.UserId == null).ToListAsync());
 		}
 
 		// GET: Whiteboards/Details/5

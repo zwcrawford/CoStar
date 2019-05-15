@@ -8,7 +8,6 @@ namespace CoStar.Models
 {
 	public class HelpfulLink
 	{
-		[Required]
 		[Key]
 		public int HelpfulLinkId { get; set; }
 
