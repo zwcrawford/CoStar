@@ -176,6 +176,19 @@ namespace CoStar.Controllers
 							viewModel.Principle.UserId = User.Id;
 							// Based on the debugger, the file is added to the Images folder here. 
 						}
+						else 
+						{
+							principle = await _context.Principles.FindAsync(id);
+							var formerFileName = principle.PrincipleImage.Substring(2);
+							viewModel.Principle.PrincipleImage = formerFileName;
+							// Update all properties of viewModel.Principle with the principle we got from the Db.
+							// Except for the PrincipleImage property
+							principle.PrincipleName = viewModel.Principle.PrincipleName;
+							principle.PrincipleDescription = viewModel.Principle.PrincipleDescription;
+							principle.User = viewModel.Principle.User;
+							principle.UserId = viewModel.Principle.UserId;
+							viewModel.Principle = principle;
+						}
 						// Data passed to Db.
 						_context.Update(viewModel.Principle);
 						await _context.SaveChangesAsync();
@@ -202,6 +215,7 @@ namespace CoStar.Controllers
 		{
 			return _context.Principles.Any(e => e.PrincipleId == id);
 		}
+
 		// GET: Principles/Delete/5
 		public async Task<IActionResult> Delete(int? id)
 		{
@@ -226,8 +240,17 @@ namespace CoStar.Controllers
         [ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(int id, PrincipleDeleteViewModel viewModel)
 		{
-			var principle = await _context.Principles.FindAsync(id);
-			_context.Principles.Remove(principle);
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+			//var savedPrincipleImage = await _context.Principles.PrincipleImage.FindAsync(id);
+
+			var fullpath = viewModel.PrincipleFileToSave.FileName.Substring(2);
+			var filepath = Path.Combine(_hostEnviro.WebRootPath, fullpath);
+
+			//if (System.IO.File.Exists(filePath))
+			//{
+			//	System.IO.File.Delete(filePath);
+			//}
+			_context.Remove(viewModel.PrincipleFileToSave);
 			await _context.SaveChangesAsync();
 			return RedirectToAction(nameof(Index));
 		}
