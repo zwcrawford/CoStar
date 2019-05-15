@@ -166,21 +166,21 @@ namespace CoStar.Data
 					HelpfulLinkId = 1,
 					LinkUrl="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
 					LinkDescription="JavaScript language Documentation",
-					UserId = user.Id
+					UserId = null
 				},
 				// Link 2
 				new HelpfulLink{
 					HelpfulLinkId = 2,
 					LinkUrl="https://docs.microsoft.com/en-us/dotnet/csharp/",
 					LinkDescription="C# language Documentation",
-					UserId = user.Id
+					UserId = null
 				},
 				// Link 3
 				new HelpfulLink{
 					HelpfulLinkId = 3,
 					LinkUrl="https://reactjs.org/docs/getting-started.html",
 					LinkDescription="React - Getting Started",
-					UserId = user.Id
+					UserId = null
 				}
 			};
 		    modelBuilder.Entity<HelpfulLink>().HasData(helpfulLinks);

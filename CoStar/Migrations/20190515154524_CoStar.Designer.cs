@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoStar.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190514204855_CoStar")]
+    [Migration("20190515154524_CoStar")]
     partial class CoStar
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,9 +84,9 @@ namespace CoStar.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1c78a4e0-70d5-4fd1-bc73-317defa17ed5",
+                            Id = "d90fc734-1d90-4d18-9d56-d36d0e64e4e3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "34cb591b-4859-4c2e-97c6-0a29f0f42c24",
+                            ConcurrencyStamp = "e9a474d4-be40-47a8-81bf-c80f18d4d39c",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             EnrollDate = new DateTime(2008, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -95,17 +95,17 @@ namespace CoStar.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDJEsmLNsmirPUPtmRzi2ARVyq9+4PbbMUI9KJ1YZPnqdH7KGUXBLqjrFlCcAyjgPQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAqnnoM8b7tk9kWCbSC1HM8BYQUc/Aw59IHmVotsEZ0Zz7gx1i3L6x8jo82T7DCWrg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2a2447a3-d351-4d8d-8835-7b5cf70a21f5",
+                            SecurityStamp = "1b6ebe0d-774f-4713-bc5d-14616894c8ac",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "04835528-d4e2-413a-bd01-4fd247170c73",
+                            Id = "27f13a6b-6f6a-4b89-81dd-77d58d5a1611",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bf19c45e-e037-4c42-9b58-f59279dc06f9",
+                            ConcurrencyStamp = "cd618967-642b-4726-ad50-92e322b47fe3",
                             Email = "guest@admin.com",
                             EmailConfirmed = true,
                             EnrollDate = new DateTime(2010, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -114,9 +114,9 @@ namespace CoStar.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@ADMIN.COM",
                             NormalizedUserName = "GUEST@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP9pixepBBoOtI09ZLzDDAwFFKtCNPKMg4XOpL2mwKNs1IWSSvI0rim2T3uBouZ4Fw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEDK6Pvx9qqjp9mhTqVRc4KcC5BbR3T659Sktv3msHMOYuG52lLB7HWMHdaW433ebA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2837439a-df99-4d30-be2a-5b8d46443175",
+                            SecurityStamp = "996819af-a9cc-447a-9d5c-b7ed628661d5",
                             TwoFactorEnabled = false,
                             UserName = "guest@admin.com"
                         });
@@ -147,22 +147,19 @@ namespace CoStar.Migrations
                         {
                             HelpfulLinkId = 1,
                             LinkDescription = "JavaScript language Documentation",
-                            LinkUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
-                            UserId = "1c78a4e0-70d5-4fd1-bc73-317defa17ed5"
+                            LinkUrl = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference"
                         },
                         new
                         {
                             HelpfulLinkId = 2,
                             LinkDescription = "C# language Documentation",
-                            LinkUrl = "https://docs.microsoft.com/en-us/dotnet/csharp/",
-                            UserId = "1c78a4e0-70d5-4fd1-bc73-317defa17ed5"
+                            LinkUrl = "https://docs.microsoft.com/en-us/dotnet/csharp/"
                         },
                         new
                         {
                             HelpfulLinkId = 3,
                             LinkDescription = "React - Getting Started",
-                            LinkUrl = "https://reactjs.org/docs/getting-started.html",
-                            UserId = "1c78a4e0-70d5-4fd1-bc73-317defa17ed5"
+                            LinkUrl = "https://reactjs.org/docs/getting-started.html"
                         });
                 });
 

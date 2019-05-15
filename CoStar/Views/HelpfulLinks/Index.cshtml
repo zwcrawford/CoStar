@@ -18,14 +18,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.LinkDescription)
             </th>
-            
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                <a>@Html.DisplayFor(modelItem => item.LinkUrl)</a>
+                @Html.DisplayFor(modelItem => item.LinkUrl)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LinkDescription)

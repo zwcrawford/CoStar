@@ -27,7 +27,7 @@ namespace CoStar.Controllers
 		public async Task<IActionResult> Index()
         {
 			var currentUser = await GetCurrentUserAsync();
-			return View(await _context.Links.Where(l => l.UserId == currentUser.Id || l.UserId == null).ToListAsync());
+			return View(await _context.Links.Where(l => (l.UserId == currentUser.Id) || (l.UserId == null)).ToListAsync());
 		}
 
         // GET: HelpfulLinks/Details/5
