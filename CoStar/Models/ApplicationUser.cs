@@ -16,7 +16,6 @@ namespace CoStar.Models
 		{
 
 		}
-		public byte[] ApplicationUserImage { get; set; }
 
 		[Required]
 		[Display(Name = "First Name")]

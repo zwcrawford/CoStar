@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CoStar.Models;
 using CoStar.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoStar.Controllers
 {
 	public class HomeController : Controller
 	{
 		private readonly ApplicationDbContext _context;
+		private readonly UserManager<ApplicationUser> _userManager;
 
-		public HomeController(ApplicationDbContext context)
+		public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
 		{
 			_context = context;
+			_userManager = userManager;
 		}
-
+		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 		public IActionResult Index()
 		{
 			return View();

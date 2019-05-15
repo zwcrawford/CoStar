@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using CoStar.Data;
@@ -19,6 +20,7 @@ namespace CoStar.Controllers
 		private readonly IHostingEnvironment _hostEnviro;
 		private readonly ApplicationDbContext _context;
 		private readonly UserManager<ApplicationUser> _userManager;
+		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
 		public PrinciplesController(IHostingEnvironment hostingEnvironment, ApplicationDbContext ctx, UserManager<ApplicationUser> userManager)
 		{
@@ -27,12 +29,11 @@ namespace CoStar.Controllers
 			_context = ctx;
 		}
 
-		private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-
 		// GET: Principles
 		public async Task<IActionResult> Index()
         {
-			return View(await _context.Principles.ToListAsync());
+			var currentUser = await GetCurrentUserAsync();
+			return View(await _context.Principles.Where(p => p.UserId == currentUser.Id || p.UserId == null).ToListAsync());
 		}
 
 		// GET: Principles/Details/5
@@ -132,7 +133,6 @@ namespace CoStar.Controllers
 			var viewModel = new PrincipleEditViewModel()
 			{
 				Principle = principle,
-				PrincipleFileToSave = 
 			};
 			return View(viewModel);
 		}
@@ -224,7 +224,7 @@ namespace CoStar.Controllers
 		// POST: Principles/Delete/5
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public async Task<IActionResult> DeleteConfirmed(int id)
+		public async Task<IActionResult> DeleteConfirmed(int id, PrincipleDeleteViewModel viewModel)
 		{
 			var principle = await _context.Principles.FindAsync(id);
 			_context.Principles.Remove(principle);
