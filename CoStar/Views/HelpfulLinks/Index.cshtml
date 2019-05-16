@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CoStar.Models.HelpfulLink>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Helpful Links";
 }
 
-<h1>Index</h1>
+<h1>Helpful Links</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LinkUrl)
+                <a>@Html.DisplayNameFor(model => model.LinkUrl)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LinkDescription)
@@ -24,7 +24,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.LinkUrl)
+                <a href="@Url.Content(item.LinkUrl.ToString());">View</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LinkDescription)
