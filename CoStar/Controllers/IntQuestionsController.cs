@@ -122,7 +122,10 @@ namespace CoStar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", intQuestion.UserId);
+			// Identity. Need this outside the if statements to pick up the UserId no matter the condition.
+			var User = await GetCurrentUserAsync();
+			intQuestion.UserId = User.Id;
+			//ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", intQuestion.UserId);
             return View(intQuestion);
         }
 
@@ -133,7 +136,6 @@ namespace CoStar.Controllers
             {
                 return NotFound();
             }
-
             var intQuestion = await _context.Questions
                 .Include(i => i.User)
                 .FirstOrDefaultAsync(m => m.IntQuestionId == id);
@@ -141,7 +143,6 @@ namespace CoStar.Controllers
             {
                 return NotFound();
             }
-
             return View(intQuestion);
         }
 

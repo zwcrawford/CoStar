@@ -170,9 +170,6 @@ namespace CoStar.Controllers
 							// Must drill down through the "model" parameter passed in here.
 							viewModel.Whiteboard.WhiteboardImage = imagepath;
 							viewModel.WhiteboardFileToSave.CopyTo(new FileStream(filePath, FileMode.Create));
-							// Identity.
-							var User = await GetCurrentUserAsync();
-							viewModel.Whiteboard.UserId = User.Id;
 							// Based on the debugger, the file is added to the Images folder here. 
 						}
 						else
@@ -190,6 +187,9 @@ namespace CoStar.Controllers
 							// Then, set the Whiteboard on the viewModel back to the db
 							viewModel.Whiteboard = whiteboard;
 						}
+						// Identity. Need this outside the if statements to pick up the UserId no matter the condition.
+						var User = await GetCurrentUserAsync();
+						viewModel.Whiteboard.UserId = User.Id;
 						// Data passed to Db and changes saved.
 						_context.Update(viewModel.Whiteboard);
 							await _context.SaveChangesAsync();
