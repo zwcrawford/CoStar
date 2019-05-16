@@ -156,8 +156,6 @@ namespace CoStar.Controllers
 			{
 				try
 				{
-					//ModelState.Remove("User");
-					//ModelState.Remove("UserId");
 					if (ModelState.IsValid)
 					{
 						if (viewModel.WhiteboardFileToSave != null)
@@ -176,12 +174,26 @@ namespace CoStar.Controllers
 							var User = await GetCurrentUserAsync();
 							viewModel.Whiteboard.UserId = User.Id;
 							// Based on the debugger, the file is added to the Images folder here. 
-
-							// Data passed to Db.
-							_context.Update(viewModel.Whiteboard);
-							await _context.SaveChangesAsync();
 						}
-						// Redirect to the Details view of the newly created item.
+						else
+						{
+							// Get the principle obj from the db
+							whiteboard = await _context.Whiteboards.FindAsync(id);
+							var formerFileName = whiteboard.WhiteboardImage.Substring(2);
+							viewModel.Whiteboard.WhiteboardImage = formerFileName;
+							// Update all props of viewModel.Principle with the principle data from db.
+							// Except for the WhiteboardImage property and the WhiteboardId
+							whiteboard.WhiteboardName = viewModel.Whiteboard.WhiteboardName;
+							whiteboard.WhiteboardDescription = viewModel.Whiteboard.WhiteboardDescription;
+							whiteboard.User = viewModel.Whiteboard.User;
+							whiteboard.UserId = viewModel.Whiteboard.UserId;
+							// Then, set the Whiteboard on the viewModel back to the db
+							viewModel.Whiteboard = whiteboard;
+						}
+						// Data passed to Db and changes saved.
+						_context.Update(viewModel.Whiteboard);
+							await _context.SaveChangesAsync();
+						// Redirect to the Details view of the newly created whiteboard.
 						return RedirectToAction("Details", new { id = viewModel.Whiteboard.WhiteboardId });
 					}
 				}

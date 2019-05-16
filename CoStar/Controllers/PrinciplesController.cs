@@ -155,8 +155,6 @@ namespace CoStar.Controllers
 			{
 				try
 				{
-					//ModelState.Remove("User");
-					//ModelState.Remove("UserId");
 					if (ModelState.IsValid)
 					{
 						if (viewModel.PrincipleFileToSave != null)
@@ -182,7 +180,7 @@ namespace CoStar.Controllers
 							var formerFileName = principle.PrincipleImage.Substring(2);
 							viewModel.Principle.PrincipleImage = formerFileName;
 							// Update all properties of viewModel.Principle with the principle we got from the Db.
-							// Except for the PrincipleImage property
+							// Except for the PrincipleImage property and the PrincipleId
 							principle.PrincipleName = viewModel.Principle.PrincipleName;
 							principle.PrincipleDescription = viewModel.Principle.PrincipleDescription;
 							principle.User = viewModel.Principle.User;
@@ -192,7 +190,7 @@ namespace CoStar.Controllers
 						// Data passed to Db.
 						_context.Update(viewModel.Principle);
 						await _context.SaveChangesAsync();
-						// Redirect to the Details view of the newly created item.
+						// Redirect to the Details view of the newly created principle.
 						return RedirectToAction("Details", new { id = viewModel.Principle.PrincipleId });
 					}
 				}
