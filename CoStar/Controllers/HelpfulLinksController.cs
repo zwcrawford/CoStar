@@ -65,7 +65,10 @@ namespace CoStar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(helpfulLink);
+				// Identity. Need this to pick up the UserId.
+				var User = await GetCurrentUserAsync();
+				helpfulLink.UserId = User.Id;
+				_context.Add(helpfulLink);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -106,7 +109,10 @@ namespace CoStar.Controllers
             {
                 try
                 {
-                    _context.Update(helpfulLink);
+					// Identity. Need this to pick up the UserId.
+					var User = await GetCurrentUserAsync();
+					helpfulLink.UserId = User.Id;
+					_context.Update(helpfulLink);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
