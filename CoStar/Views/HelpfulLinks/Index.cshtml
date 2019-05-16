@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                <a>@Html.DisplayNameFor(model => model.LinkUrl)</a>
+                <a target="_blank">@Html.DisplayNameFor(model => model.LinkUrl)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LinkDescription)
@@ -24,7 +24,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                <a href="@Url.Content(item.LinkUrl.ToString());">View</a>
+                <a target="_blank" href="@Url.Content(item.LinkUrl.ToString())">View</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LinkDescription)
