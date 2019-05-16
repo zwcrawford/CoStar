@@ -65,7 +65,10 @@ namespace CoStar.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(intQuestion);
+				// Identity. Need this to pick up the UserId.
+				var User = await GetCurrentUserAsync();
+				intQuestion.UserId = User.Id;
+				_context.Add(intQuestion);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -106,7 +109,10 @@ namespace CoStar.Controllers
             {
                 try
                 {
-                    _context.Update(intQuestion);
+					// Identity. Need this outside the if statements to pick up the UserId no matter the condition.
+					var User = await GetCurrentUserAsync();
+					intQuestion.UserId = User.Id;
+					_context.Update(intQuestion);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -122,9 +128,7 @@ namespace CoStar.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-			// Identity. Need this outside the if statements to pick up the UserId no matter the condition.
-			var User = await GetCurrentUserAsync();
-			intQuestion.UserId = User.Id;
+			
 			//ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", intQuestion.UserId);
             return View(intQuestion);
         }
