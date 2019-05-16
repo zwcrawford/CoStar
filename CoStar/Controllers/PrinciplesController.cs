@@ -165,13 +165,14 @@ namespace CoStar.Controllers
 							var filePath = Path.Combine(uploads, uniqueFileName);
 							// Creating a formatted string to save to the Db.
 							var imagepath = "~/Images/" + uniqueFileName;
+							// Identity.
+							var User = await GetCurrentUserAsync();
+							viewModel.Principle.UserId = User.Id;
 							// Assign that variable to PrincipleImage.
 							// Must drill down through the "model" parameter passed in here.
 							viewModel.Principle.PrincipleImage = imagepath;
 							viewModel.PrincipleFileToSave.CopyTo(new FileStream(filePath, FileMode.Create));
-							// Identity.
-							var User = await GetCurrentUserAsync();
-							viewModel.Principle.UserId = User.Id;
+							
 							// Based on the debugger, the file is added to the Images folder here. 
 						}
 						else 
@@ -187,12 +188,14 @@ namespace CoStar.Controllers
 							principle.UserId = viewModel.Principle.UserId;
 							viewModel.Principle = principle;
 						}
+
 						// Data passed to Db.
 						_context.Update(viewModel.Principle);
 						await _context.SaveChangesAsync();
 						// Redirect to the Details view of the newly created principle.
 						return RedirectToAction("Details", new { id = viewModel.Principle.PrincipleId });
 					}
+					
 				}
 				catch (DbUpdateConcurrencyException)
 				{

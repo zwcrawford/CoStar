@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                <a target="_blank">@Html.DisplayNameFor(model => model.LinkUrl)</a>
+                @Html.DisplayNameFor(model => model.LinkUrl)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LinkDescription)
@@ -21,20 +21,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a target="_blank" href="@Url.Content(item.LinkUrl.ToString())">View</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LinkDescription)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.HelpfulLinkId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HelpfulLinkId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HelpfulLinkId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+
+            if (item.UserId == null)
+            {
+                <tr>
+                    <td>
+                        <a target="_blank" href="@Url.Content(item.LinkUrl.ToString())">View</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LinkDescription)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.HelpfulLinkId">Details</a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        <a target="_blank" href="@Url.Content(item.LinkUrl.ToString())">View</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LinkDescription)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.HelpfulLinkId">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.HelpfulLinkId">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.HelpfulLinkId">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>
