@@ -215,6 +215,45 @@ namespace CoStar.Controllers
 		}
 
 		// GET: Principles/Delete/5
+		//public async Task<IActionResult> Delete(int? id)
+		//{
+		//	if (id == null)
+		//	{
+		//		return NotFound();
+		//	}
+
+		//	var principle = await _context.Principles
+		//		.Include(p => p.User)
+		//		.FirstOrDefaultAsync(p => p.PrincipleId == id);
+		//	if (principle == null)
+		//	{
+		//		return NotFound();
+		//	}
+
+		//	return View(principle);
+		//}
+
+		// POST: Principles/Delete/5
+		//[HttpPost]
+		//      [ValidateAntiForgeryToken]
+		//public async Task<IActionResult> DeleteConfirmed(int id, PrincipleDeleteViewModel viewModel)
+		//{
+		//	var user = await _userManager.GetUserAsync(HttpContext.User);
+		//	//var savedPrincipleImage = await _context.Principles.PrincipleImage.FindAsync(id);
+
+		//	var fullpath = viewModel.PrincipleFileToSave.FileName.Substring(2);
+		//	var filepath = Path.Combine(_hostEnviro.WebRootPath, fullpath);
+
+		//	//if (System.IO.File.Exists(filePath))
+		//	//{
+		//	//	System.IO.File.Delete(filePath);
+		//	//}
+		//	_context.Remove(viewModel.PrincipleFileToSave);
+		//	await _context.SaveChangesAsync();
+		//	return RedirectToAction(nameof(Index));
+		//}
+
+		// GET: Principles/Delete/5
 		public async Task<IActionResult> Delete(int? id)
 		{
 			if (id == null)
@@ -223,7 +262,6 @@ namespace CoStar.Controllers
 			}
 
 			var principle = await _context.Principles
-				.Include(p => p.User)
 				.FirstOrDefaultAsync(p => p.PrincipleId == id);
 			if (principle == null)
 			{
@@ -234,21 +272,12 @@ namespace CoStar.Controllers
 		}
 
 		// POST: Principles/Delete/5
-		[HttpPost]
-        [ValidateAntiForgeryToken]
-		public async Task<IActionResult> DeleteConfirmed(int id, PrincipleDeleteViewModel viewModel)
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteConfirmed(int id)
 		{
-			var user = await _userManager.GetUserAsync(HttpContext.User);
-			//var savedPrincipleImage = await _context.Principles.PrincipleImage.FindAsync(id);
-
-			var fullpath = viewModel.PrincipleFileToSave.FileName.Substring(2);
-			var filepath = Path.Combine(_hostEnviro.WebRootPath, fullpath);
-
-			//if (System.IO.File.Exists(filePath))
-			//{
-			//	System.IO.File.Delete(filePath);
-			//}
-			_context.Remove(viewModel.PrincipleFileToSave);
+			var principle = await _context.Principles.FindAsync(id);
+			_context.Principles.Remove(principle);
 			await _context.SaveChangesAsync();
 			return RedirectToAction(nameof(Index));
 		}
