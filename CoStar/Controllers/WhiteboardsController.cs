@@ -218,6 +218,36 @@ namespace CoStar.Controllers
 		}
 
 		// GET: Whiteboards/Delete/5
+		//public async Task<IActionResult> Delete(int? id)
+		//{
+		//	if (id == null)
+		//	{
+		//		return NotFound();
+		//	}
+
+		//	var whiteboard = await _context.Whiteboards
+		//		.Include(w => w.User)
+		//		.FirstOrDefaultAsync(w => w.WhiteboardId == id);
+		//	if (whiteboard == null)
+		//	{
+		//		return NotFound();
+		//	}
+
+		//	return View(whiteboard);
+		//}
+
+		// POST: Whiteboards/Delete/5
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		//public async Task<IActionResult> DeleteConfirmed(int id, WhiteboardDeleteViewModel viewModel)
+		//{
+		//	var whiteboard = await _context.Whiteboards.FindAsync(id);
+		//	_context.Whiteboards.Remove(whiteboard);
+		//	await _context.SaveChangesAsync();
+		//	return RedirectToAction(nameof(Index));
+		//}
+
+		// GET: Principles/Delete/5
 		public async Task<IActionResult> Delete(int? id)
 		{
 			if (id == null)
@@ -226,7 +256,6 @@ namespace CoStar.Controllers
 			}
 
 			var whiteboard = await _context.Whiteboards
-				.Include(w => w.User)
 				.FirstOrDefaultAsync(w => w.WhiteboardId == id);
 			if (whiteboard == null)
 			{
@@ -236,10 +265,10 @@ namespace CoStar.Controllers
 			return View(whiteboard);
 		}
 
-		// POST: Whiteboards/Delete/5
-		[HttpPost]
+		// POST: Principles/Delete/5
+		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> DeleteConfirmed(int id, WhiteboardDeleteViewModel viewModel)
+		public async Task<IActionResult> DeleteConfirmed(int id)
 		{
 			var whiteboard = await _context.Whiteboards.FindAsync(id);
 			_context.Whiteboards.Remove(whiteboard);
